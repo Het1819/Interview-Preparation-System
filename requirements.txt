@@ -1,0 +1,9 @@
+pydantic
+email_validator
+openai
+langchain
+langgraph
+langchain-openai
+langchain-anthropic
+langchain-groq
+langchain_ollama
