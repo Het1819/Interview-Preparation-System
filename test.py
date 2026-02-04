@@ -46,7 +46,7 @@ except Exception as e:
 # from langgraph.prebuilt import create_react_agent
 
 # # 1. Set your Free API Key (Get it from console.groq.com)
-# os.environ["GROQ_API_KEY"] = "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"
+# os.environ["GROQ_API_KEY"] = "groq_api_key"
 
 # # 2. Define the tool using the @tool decorator (better for LangGraph)
 # @tool
