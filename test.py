@@ -1,38 +1,12 @@
-import os
-from langchain_ollama import ChatOllama
-from langchain_core.messages import HumanMessage
-from langgraph.prebuilt import create_react_agent
-from langchain_core.tools import tool
+from pypdf import PdfReader
 
-# Using a lighter model to ensure it fits in your 3.7GB RAM
-llm = ChatOllama(
-    model="smollm2:1.7b", 
-    temperature=0
-)
+reader = PdfReader("Naval_Dhandha_DA (1).pdf")
 
-@tool
-def check_interview_slots(date: str):
-    """Checks available interview slots for a specific date."""
-    return ["10:00 AM", "2:00 PM", "4:30 PM"]
+document_txt = " "
+for page in reader.pages:
+    document_txt += page.extract_text()
 
-tools = [check_interview_slots]
-app = create_react_agent(llm, tools)
-
-print('---Starting Local Agent---')
-
-# FIXED: key must be lowercase "messages"
-inputs = {"messages": [HumanMessage(content="What times are available for interviews on Friday?")]}
-
-try:
-    for chunk in app.stream(inputs, stream_mode="values"):
-        final_result = chunk["messages"][-1].content
-    print("\nAgent Response:", final_result)
-except Exception as e:
-    print(f"Error: {e}")
-    print("TIP: Close Chrome or other apps to free up RAM for Ollama.")
-
-
-
+print(document_txt)
 
 
 
@@ -41,73 +15,115 @@ except Exception as e:
 
 
 # import os
-# from langchain_groq import ChatGroq
-# from langchain_core.tools import tool
+# from langchain_ollama import ChatOllama
+# from langchain_core.messages import HumanMessage
 # from langgraph.prebuilt import create_react_agent
+# from langchain_core.tools import tool
 
-# # 1. Set your Free API Key (Get it from console.groq.com)
-# os.environ["GROQ_API_KEY"] = "groq_api_key"
-
-# # 2. Define the tool using the @tool decorator (better for LangGraph)
-# @tool
-# def get_weather(city: str) -> str:
-#     """
-#     Returns the current weather for a given city.
-#     """
-#     return f"It's always sunny in {city}"
-
-
-# # 3. Use a powerful free model like Llama 3
-# # Note: Groq is compatible with the standard LangGraph agent factory
-# llm = ChatGroq(
-#     model="llama-3.3-70b-versatile",
+# # Using a lighter model to ensure it fits in your 3.7GB RAM
+# llm = ChatOllama(
+#     model="smollm2:1.7b", 
 #     temperature=0
 # )
 
-# # 4. Create the agent
-# tools = [get_weather]
-# agent = create_react_agent(llm, tools)
+# @tool
+# def check_interview_slots(date: str):
+#     """Checks available interview slots for a specific date."""
+#     return ["10:00 AM", "2:00 PM", "4:30 PM"]
 
-# # 5. Run the agent
-# result = agent.invoke(
-#     {"messages": [{"role": "user", "content": "what is the weather in ahmedabad"}]}
-# )
+# tools = [check_interview_slots]
+# app = create_react_agent(llm, tools)
 
-# # Print the last message from the agent
-# print(result["messages"][-1].content)
+# print('---Starting Local Agent---')
 
+# # FIXED: key must be lowercase "messages"
+# inputs = {"messages": [HumanMessage(content="What times are available for interviews on Friday?")]}
 
-
-
-
-
-
-
-
-
-
+# try:
+#     for chunk in app.stream(inputs, stream_mode="values"):
+#         final_result = chunk["messages"][-1].content
+#     print("\nAgent Response:", final_result)
+# except Exception as e:
+#     print(f"Error: {e}")
+#     print("TIP: Close Chrome or other apps to free up RAM for Ollama.")
 
 
-# from langchain.agents import create_agent
 
-# def get_weather(city:str) -> str:
-#     """
-#     Docstring for get_weather
+
+
+
+
+
+
+
+# # import os
+# # from langchain_groq import ChatGroq
+# # from langchain_core.tools import tool
+# # from langgraph.prebuilt import create_react_agent
+
+# # # 1. Set your Free API Key (Get it from console.groq.com)
+# # os.environ["GROQ_API_KEY"] = "groq_api_key"
+
+# # # 2. Define the tool using the @tool decorator (better for LangGraph)
+# # @tool
+# # def get_weather(city: str) -> str:
+# #     """
+# #     Returns the current weather for a given city.
+# #     """
+# #     return f"It's always sunny in {city}"
+
+
+# # # 3. Use a powerful free model like Llama 3
+# # # Note: Groq is compatible with the standard LangGraph agent factory
+# # llm = ChatGroq(
+# #     model="llama-3.3-70b-versatile",
+# #     temperature=0
+# # )
+
+# # # 4. Create the agent
+# # tools = [get_weather]
+# # agent = create_react_agent(llm, tools)
+
+# # # 5. Run the agent
+# # result = agent.invoke(
+# #     {"messages": [{"role": "user", "content": "what is the weather in ahmedabad"}]}
+# # )
+
+# # # Print the last message from the agent
+# # print(result["messages"][-1].content)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # from langchain.agents import create_agent
+
+# # def get_weather(city:str) -> str:
+# #     """
+# #     Docstring for get_weather
     
-#     :param city: Description
-#     :type city: str
-#     :return: Description
-#     :rtype: str
-#     """
-#     return f"It's always sunny in {city}"
+# #     :param city: Description
+# #     :type city: str
+# #     :return: Description
+# #     :rtype: str
+# #     """
+# #     return f"It's always sunny in {city}"
 
 
-# agent = create_agent(
-#     model="gpt-3.5-turbo",
-#     tools=[get_weather],
-#     system_prompt="You are a helpful assistant"
-# )
+# # agent = create_agent(
+# #     model="gpt-3.5-turbo",
+# #     tools=[get_weather],
+# #     system_prompt="You are a helpful assistant"
+# # )
 
-# agent.invoke(
-#     {"messages": [{"role": "user", "content": "what is the weather in sf"}]}
-# )
+# # agent.invoke(
+# #     {"messages": [{"role": "user", "content": "what is the weather in sf"}]}
+# # )
