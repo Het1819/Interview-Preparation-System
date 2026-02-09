@@ -49,61 +49,6 @@ print(document_txt)
 
 
 
-
-
-
-
-
-
-
-# # import os
-# # from langchain_groq import ChatGroq
-# # from langchain_core.tools import tool
-# # from langgraph.prebuilt import create_react_agent
-
-# # # 1. Set your Free API Key (Get it from console.groq.com)
-# # os.environ["GROQ_API_KEY"] = "groq_api_key"
-
-# # # 2. Define the tool using the @tool decorator (better for LangGraph)
-# # @tool
-# # def get_weather(city: str) -> str:
-# #     """
-# #     Returns the current weather for a given city.
-# #     """
-# #     return f"It's always sunny in {city}"
-
-
-# # # 3. Use a powerful free model like Llama 3
-# # # Note: Groq is compatible with the standard LangGraph agent factory
-# # llm = ChatGroq(
-# #     model="llama-3.3-70b-versatile",
-# #     temperature=0
-# # )
-
-# # # 4. Create the agent
-# # tools = [get_weather]
-# # agent = create_react_agent(llm, tools)
-
-# # # 5. Run the agent
-# # result = agent.invoke(
-# #     {"messages": [{"role": "user", "content": "what is the weather in ahmedabad"}]}
-# # )
-
-# # # Print the last message from the agent
-# # print(result["messages"][-1].content)
-
-
-
-
-
-
-
-
-
-
-
-
-
 # # from langchain.agents import create_agent
 
 # # def get_weather(city:str) -> str:
