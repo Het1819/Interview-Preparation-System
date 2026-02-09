@@ -8,3 +8,6 @@ langchain-anthropic
 langchain-groq
 langchain_ollama
 pypdf
+docx
+pillow
+google-genai

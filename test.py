@@ -1,12 +1,24 @@
-from pypdf import PdfReader
+from document_loader import SmartLoader
+pdf_loader = SmartLoader()
+data = pdf_loader.load_image("01_test_case.png")
+print(data)
 
-reader = PdfReader("Naval_Dhandha_DA (1).pdf")
 
-document_txt = " "
-for page in reader.pages:
-    document_txt += page.extract_text()
 
-print(document_txt)
+
+
+
+
+
+# from pypdf import PdfReader
+
+# reader = PdfReader("Naval_Dhandha_DA (1).pdf")
+
+# document_txt = " "
+# for page in reader.pages:
+#     document_txt += page.extract_text()
+
+# print(document_txt)
 
 
 
