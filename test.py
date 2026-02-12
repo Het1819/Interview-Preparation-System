@@ -1,8 +1,20 @@
 from document_loader import SmartLoader
 pdf_loader = SmartLoader()
-data = pdf_loader.load_image("01_test_case.png")
-print(data)
+# job_data = pdf_loader.load_image("01_test_case.png")
+job_data = pdf_loader.load_docx("JD FOR KNOWN.docx")
+resume_data = pdf_loader.load_pdf("Naval_Dhandha_DA (1).pdf") 
 
+print(resume_data)
+print(job_data)
+
+
+# from google import genai
+# client = genai.Client(api_key="")
+# response = client.models.generate_content(
+#     model="gemini-2.5-flash",
+#     contents=["Please describe this image:", job_data]
+# )
+# print(response.text)
 
 
 

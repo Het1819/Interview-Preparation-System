@@ -11,3 +11,4 @@ pypdf
 docx
 pillow
 google-genai
+langchain-google-genai
