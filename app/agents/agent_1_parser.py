@@ -1,9 +1,9 @@
 from __future__ import annotations
 
+import re
 import os
 import json
 from typing import Any, Dict, Optional
-
 from pydantic import BaseModel, Field
 
 # ✅ LangChain v1 agent
@@ -15,30 +15,19 @@ from langchain.tools import tool
 # ✅ Gemini chat model (LangChain integration)
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-# ✅ Structured output strategies (recommended when model-native JSON is not guaranteed)
-from langchain.agents.structured_output import ToolStrategy
-
 # ✅ Gemini official SDK (needed for SmartLoader Part -> multimodal extraction)
 from google import genai
 from google.genai import types as genai_types
 
-# ✅ Import SmartLoader exactly as you asked
+# ✅ Import SmartLoader
 from app.shared.utils import SmartLoader
 
 
 # ----------------------------
 # Output schema
 # ----------------------------
-class Agent1ParsedDoc(BaseModel):
-    file_path: str = Field(..., description="Path to the processed file.")
-    doc_type: str = Field(..., description="resume | job_description | interview_notes | policy | unknown")
-    summary: str = Field(..., description="Short summary of the document.")
-    key_points: list[str] = Field(default_factory=list, description="Key points as bullets.")
-    entities: Dict[str, list[str]] = Field(
-        default_factory=dict,
-        description="Grouped entities e.g. {'skills':[], 'tools':[], 'companies':[], 'roles':[]}",
-    )
-    raw_text_preview: str = Field(..., description="First ~1200 chars preview of extracted text.")
+# ✅ Import Schema Agent1ParsedDoc
+from app.shared.schemas import Agent1ParsedDoc
 
 
 # ----------------------------
@@ -88,12 +77,37 @@ def gemini_multimodal_extract_text(part: genai_types.Part, model: str = "gemini-
 
 
 # ----------------------------
-# Helper: get last assistant message content
+# Helpers: normalize Gemini content + parse JSON safely
 # ----------------------------
+def normalize_model_content(content: Any) -> str:
+    """
+    Gemini via LangChain often returns content as:
+      - string
+      - list[{"type": "text", "text": "..."}]
+    Convert it into a single plain string.
+    """
+    if content is None:
+        return ""
+
+    if isinstance(content, str):
+        return content
+
+    if isinstance(content, list):
+        chunks = []
+        for part in content:
+            if isinstance(part, dict) and isinstance(part.get("text"), str):
+                chunks.append(part["text"])
+            else:
+                chunks.append(str(part))
+        return "\n".join(chunks)
+
+    return str(content)
+
+
 def _get_last_ai_content(agent_result: Dict[str, Any]) -> str:
     """
     create_agent returns a state dict with 'messages'.
-    We'll grab the last AI message content.
+    We'll grab the last assistant content and normalize it to string.
     """
     msgs = agent_result.get("messages", [])
     if not msgs:
@@ -101,14 +115,57 @@ def _get_last_ai_content(agent_result: Dict[str, Any]) -> str:
 
     last = msgs[-1]
 
-    # Messages might be dicts: {"role":"assistant","content":...}
     if isinstance(last, dict):
-        content = last.get("content", "")
-        return content if isinstance(content, str) else json.dumps(content)
+        return normalize_model_content(last.get("content"))
 
-    # Or LangChain message objects
-    content = getattr(last, "content", "")
-    return content if isinstance(content, str) else json.dumps(content)
+    return normalize_model_content(getattr(last, "content", ""))
+
+
+def strip_code_fences(text: str) -> str:
+    """
+    Removes ```json ... ``` or ``` ... ``` fences if present.
+    """
+    if not text:
+        return ""
+    text = text.strip()
+
+    # Remove opening fence
+    text = re.sub(r"^\s*```(?:json)?\s*", "", text, flags=re.IGNORECASE)
+
+    # Remove closing fence
+    text = re.sub(r"\s*```\s*$", "", text)
+
+    return text.strip()
+
+
+def extract_json_object(text: str) -> Optional[Dict[str, Any]]:
+    """
+    Robust JSON extractor for:
+    - plain JSON
+    - JSON wrapped in ```json fences
+    - extra text around a JSON block
+    """
+    if not text:
+        return None
+
+    cleaned = strip_code_fences(text)
+
+    # 1) direct parse
+    try:
+        return json.loads(cleaned)
+    except Exception:
+        pass
+
+    # 2) extract first {...} block
+    m = re.search(r"(\{.*\})", cleaned, re.DOTALL)
+    if m:
+        candidate = m.group(1).strip()
+        try:
+            return json.loads(candidate)
+        except Exception:
+            return None
+
+    return None
 
 
 # ----------------------------
@@ -126,46 +183,41 @@ def build_agent1(
 
     tools = [load_file_with_smartloader]
 
-    system_prompt = f"""
-You are Agent 1: a document ingestion + parsing agent.
+    system_prompt = """
+    You are Agent 1: a document ingestion + parsing agent.
 
-CRITICAL OUTPUT RULE:
-- Return ONLY valid JSON.
-- Use double quotes for ALL keys and string values.
-- Do NOT return python-style output like: key='value'
-- Do NOT wrap the JSON in markdown code fences.
-- No extra text before or after the JSON.
+    CRITICAL OUTPUT RULE:
+    - Return ONLY valid JSON.
+    - Use double quotes for ALL keys and string values.
+    - Do NOT return python-style output like: key='value'
+    - Do NOT wrap the JSON in markdown code fences.
+    - No extra text before or after the JSON.
 
-JSON schema (must match exactly):
-{{
-  "file_path": "string",
-  "doc_type": "resume | job_description | interview_notes | policy | unknown",
-  "summary": "string",
-  "key_points": ["string", "..."],
-  "entities": {{"group": ["item", "..."]}},
-  "raw_text_preview": "string"
-}}
+    JSON schema (must match exactly):
+    {
+    "file_path": "string",
+    "doc_type": "resume | job_description | interview_notes | policy | unknown",
+    "summary": "string",
+    "key_points": ["string", "..."],
+    "entities": {"group": ["item", "..."]},
+    "raw_text_preview": "string"
+    }
 
-Process:
-1) Call load_file_with_smartloader(file_path).
-2) If the tool returns "__MULTIMODAL_PART__", set doc_type="unknown" and summary stating multimodal extraction is needed.
-3) If the tool returns text, extract the fields and fill the JSON.
+    Process:
+    1) Call load_file_with_smartloader(file_path).
+    2) If the tool returns "__MULTIMODAL_PART__", set doc_type="unknown" and summary stating multimodal extraction is needed.
+    3) If the tool returns text, extract the fields and fill the JSON.
 
-Keep raw_text_preview to first ~1200 characters of the text.
-"""
+    Keep raw_text_preview to first ~1200 characters of the text.
+    """
 
-    # You can keep ToolStrategy OR remove it.
-    # Keeping it is fine, but it doesn't guarantee JSON. The prompt does.
     agent = create_agent(
         model=llm,
         tools=tools,
         system_prompt=system_prompt,
-        # response_format can be omitted to avoid Pydantic-like output formatting
-        # response_format=ToolStrategy(Agent1ParsedDoc),
     )
 
     return agent
-
 
 
 # ----------------------------
@@ -173,9 +225,8 @@ Keep raw_text_preview to first ~1200 characters of the text.
 # ----------------------------
 def run_agent1(file_path: str) -> Dict[str, Any]:
     """
-    - If file is text-extractable: agent calls SmartLoader tool and returns structured object.
-    - If file is scanned/image-heavy: we do Gemini multimodal OCR -> then call agent WITHOUT tool loop
-      (we pass the extracted text directly in the message).
+    - If file is text-extractable: agent calls SmartLoader tool and returns JSON.
+    - If file is scanned/image-heavy: do Gemini multimodal OCR -> then agent converts extracted text to JSON.
     """
     loader = SmartLoader()
     loaded = loader.process_file(file_path)
@@ -190,15 +241,12 @@ def run_agent1(file_path: str) -> Dict[str, Any]:
             {"messages": [{"role": "user", "content": f"Parse this file path: {file_path}"}]}
         )
 
-        # Depending on strategy, final assistant content may already be JSON.
         text = _get_last_ai_content(result).strip()
+        data = extract_json_object(text)
+        if data:
+            return data
 
-        # If it's JSON, parse and return
-        try:
-            return json.loads(text)
-        except Exception:
-            # As a fallback, return raw
-            return {"error": "Failed to parse JSON from agent output.", "raw_output": text}
+        return {"error": "Failed to parse JSON from agent output.", "raw_output": text}
 
     # ----------------
     # Case B: scanned/image-heavy -> multimodal extraction
@@ -206,8 +254,6 @@ def run_agent1(file_path: str) -> Dict[str, Any]:
     if isinstance(loaded, genai_types.Part):
         extracted_text = gemini_multimodal_extract_text(loaded)
 
-        # Now ask agent to convert extracted text into schema.
-        # (We don't need the file-loading tool here.)
         result = agent.invoke(
             {
                 "messages": [
@@ -224,10 +270,11 @@ def run_agent1(file_path: str) -> Dict[str, Any]:
         )
 
         text = _get_last_ai_content(result).strip()
-        try:
-            return json.loads(text)
-        except Exception:
-            return {"error": "Failed to parse JSON from agent output.", "raw_output": text}
+        data = extract_json_object(text)
+        if data:
+            return data
+
+        return {"error": "Failed to parse JSON from agent output.", "raw_output": text}
 
     # ----------------
     # Fallback
@@ -247,20 +294,12 @@ def run_agent1(file_path: str) -> Dict[str, Any]:
 # CLI test
 # ----------------------------
 if __name__ == "__main__":
-    # Put any local path here
-    test_path = r"D:\End to end Job Description and Resume Analyser\interview-prep-system\Naval_Dhandha_DA (1).pdf"
-    # example_pdf = "INTERVIEW-PREP-SYSTEM/Naval_Dhandha_DA (1).pdf"
-    out = run_agent1(test_path)
-    print(json.dumps(out, indent=2, ensure_ascii=False))
-
-
-
-
-
-
-
-
-
+    test_path_01 = r"D:\End to end Job Description and Resume Analyser\interview-prep-system\documents\Naval_Dhandha_DA (1).pdf"
+    test_path_02 = r"D:\End to end Job Description and Resume Analyser\interview-prep-system\documents\JD FOR KNOWN.docx"
+    out1 = run_agent1(test_path_01)
+    out2 = run_agent1(test_path_02)
+    print(json.dumps(out1, indent=2, ensure_ascii=False))
+    print(json.dumps(out2, indent=2, ensure_ascii=False))
 
 
 
