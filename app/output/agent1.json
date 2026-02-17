@@ -1,0 +1,83 @@
+{
+  "file_path": "D:\\End to end Job Description and Resume Analyser\\interview-prep-system\\documents\\JD for BNSF.docx",
+  "doc_type": "job_description",
+  "summary": "This is a job description for an AI Engineer II (Remote - US) at BNSF Railway. The role involves designing, developing, and implementing AI models and algorithms for railroad operations, including predictive maintenance, scheduling, and safety monitoring. Key responsibilities include data collection and analysis, building ETL pipelines, optimizing train scheduling, and collaborating with cross-functional teams. The position requires proficiency in programming languages like Python or Java, familiarity with data engineering tools and machine learning frameworks, and strong analytical and communication skills.",
+  "key_points": [
+    "AI Engineer II (Remote - US) position at BNSF Railway.",
+    "Focus on AI/ML development and implementation for railroad operations.",
+    "Responsibilities include AI model design, data collection/analysis, ETL pipeline building, optimization, testing, and collaboration.",
+    "Required: 3+ years in AI/ML development, Python/Java proficiency, familiarity with data engineering tools (Hadoop, Spark, AWS S3, PySpark, RDS, JupyterLab) and cloud services (AWS, Azure, Databricks), ML frameworks (TensorFlow, PyTorch, scikit-learn, Keras), SQL.",
+    "Preferred: Bachelor's degree in CS/AI/Data Science/Engineering, data visualization tools (Tableau, PowerBI, TIBCO), experience with IoT, GIS data, railroad operations, predictive maintenance, anomaly detection.",
+    "Benefits include 401(k), Railroad Retirement, health care, HSA, life/disability insurance, family benefits, annual bonus, and generous leave."
+  ],
+  "entities": {
+    "Job Title": [
+      "AI Engineer II"
+    ],
+    "Company": [
+      "BNSF Railway",
+      "BNSF | Tech"
+    ],
+    "Location": [
+      "REMOTE, US",
+      "Fort Worth, TX"
+    ],
+    "Skills": [
+      "AI/ML development",
+      "data science",
+      "software engineering",
+      "programming",
+      "data engineering",
+      "machine learning",
+      "SQL",
+      "analytical skills",
+      "problem-solving",
+      "teamwork",
+      "communication",
+      "data visualization",
+      "IoT",
+      "sensors",
+      "edge computing",
+      "GIS data",
+      "predictive maintenance",
+      "anomaly detection"
+    ],
+    "Programming Languages": [
+      "Python",
+      "Java"
+    ],
+    "Data Engineering Tools": [
+      "Hadoop",
+      "Spark",
+      "EMS",
+      "AWS S3",
+      "PySpark",
+      "RDS",
+      "JupyterLab"
+    ],
+    "Cloud Services": [
+      "AWS",
+      "Azure",
+      "Databricks"
+    ],
+    "Machine Learning Frameworks": [
+      "TensorFlow",
+      "PyTorch",
+      "scikit-learn",
+      "Keras"
+    ],
+    "Data Visualization Tools": [
+      "Tableau",
+      "PowerBI",
+      "TIBCO"
+    ],
+    "Domain": [
+      "railroad operations",
+      "transportation systems"
+    ],
+    "Experience Level": [
+      "3+ years"
+    ]
+  },
+  "raw_text_preview": "AI Engineer II (Remote - US)\nLocation REMOTE, US, 76131Job Id 94808Company Name BNSF Railway\n\nbe part of a team that values safety, inclusion, and excellence\nwe are one of the largest U.S. railroads transporting the nation’s freight across 28 western states and 3 Canadian provinces. as a member of our team, you will play a role in supporting the movement of essential products and materials that help feed, clothe, supply, and power communities throughout America and the world.\n \nbnsf | tech: innovating and transforming the future of freight rail\nbnsf | tech is the technology division making BNSF the preeminent freight and mobility company in north america.\n \nare you ready to drive change?\nif you are passionate about making a difference and eager to advance your career in a dynamic and supportive environment, we want you on our team! join us in reshaping the future of freight rail and discover a fulfilling career where your contributions matter.\n \nwe are committed to a culture where all employees are included, belong, and have equal opportunity to achieve their full potential. Come make a difference with us!\n \nlearn more about BNSF and our Benefits\n \nJob Location: Remote US\nAnticipated Start Date: 03/30/2026\n\nThe US base salary range for this full-time position is provided below:\n\n\nSalary Range: $123,750 - $175,000\n\nThe range represents the amount bnsf | tech reasonably expects to pay for the position based on the level, scope, and responsibilities of the role. Individual compensation and level of position offered is determined by the hiring location and additional factors including but not limited to job-related skills, experience, and relevant education or training. In addition to base pay and bonus eligibility, BNSF offers a comprehensive benefits package.\n \nThis is a full-time remote position. Employees may work from anywhere within the contiguous 48 states of the United States\n\nTravel is up to 20%. Employees will be required to occasionally travel to our corporate headquarters in Fort Worth, TX for in person meetings. Travel expenses for business needs will be covered by BNSF\n\nThis position is open to candidates who are currently authorized to work in the United States. We are also open to sponsoring H-1B transfers, TN nonimmigrant status, and STEM OPT candidates with at least 2 years of remaining eligibility.\n\nApply early as this job may be removed or filled prior to the closing date, which is approximately seven (7) days after the posting date.\n\ndata & ai: lead our charge into the future as an ai company by transforming our data assets into a real time enterprise.\n\nKey responsibilities may include:\n\nAI Development and Implementation:\n\nAssist in designing, developing, and implementing AI models and algorithms tailored to railroad operations, including predictive maintenance, scheduling, and safety monitoring.\n\nCollaborate with senior engineers to apply machine learning techniques to analyze large datasets and extract actionable insights.\n\nData Collection and Analysis:\n\nCollect, preprocess, and clean data from various sources (e.g., sensors, GPS, maintenance logs) for training AI models.\n\nConduct exploratory data analysis to identify trends and patterns relevant to rail operations.\n\nBuilding and maintaining Extract, Transform, Load (ETL) pipelines for AI applications.\n\nOptimization and Automation:\n\nWork in partnership with data scientists to develop AI-driven solutions to optimize train scheduling, route planning, and fuel efficiency.\n\nSupport the deployment of automation tools for monitoring and managing railroad systems.\n\nTesting and Validation:\n\nParticipate in testing and optimization of AI models to ensure accuracy, reliability, and compliance with safety standards.\n\nMonitor model performance and assist in troubleshooting issues as they arise.\n\nCollaboration and Communication:\n\nWork closely with cross-functional teams, including data scientists, software engineers, business analysts, to understand their needs and enable AI-driven solutions.\n\nCommunicate technical concepts and project updates to both technical and non-technical stakeholders.\n\n\nContinuous Learning and Development:\nwith advancements in AI, machine learning, and railroad technologies.\n\nParticipate in training sessions, workshops, and conferences to enhance skills and knowledge.\n\nThe duties and responsibilities in this posting are representative categories to be used in deciding whether to apply for this position. This is not an exhaustive list of the position’s duties. \n \nAt BNSF Railway, we encourage individuals from all backgrounds to apply, showcasing their skills, experiences and development. We provide resources and tools to help you reach your full potential, fostering a supportive and inclusive environment.\n\nBasic Qualifications\n\nAuthorized to work in the US.\nMinimum of 3 years experience in AI/ML development, data science, software engineering, or relevant experience.\nTechnical Skills:\nProficiency in programming languages such as Python or Java.\nFamiliarity with data engineering tools and platforms (e.g., Hadoop, Spark, EMS, AWS S3, PySpark, RDS, JupyterLab) and cloud services (AWS, Azure, Databricks) and open source environments.\nFamiliarity with machine learning frameworks (e.g., TensorFlow, PyTorch, scikit-learn, Keras).\nUnderstanding of databases and SQL for data management.\nAnalytical Skills: Strong problem-solving skills and ability to analyze complex datasets.\nTeamwork: Ability to work collaboratively in a team-oriented environment.\nCommunication: Effective verbal and written communication skills\n \nPreferred Qualifications\n\nAble to work now and in the future without BNSF’s assistance (whether monetary, through sponsorship, or otherwise) in obtaining, maintaining, or extending employment authorization (including H-1B, STEM OPT/CPT, or TN nonimmigrant status).\nBachelor's degree or higher in Computer Science, Artificial Intelligence, Data Science, Engineering, or related field.\nBasic knowledge of data visualization tools (e.g., Tableau, PowerBI, TIBCO)\nExperience with IoT devices, sensors, or edge computing in industrial environments.\nExperience with GIS data.\nKnowledge of railroad operations or transportation systems.\nFamiliarity with predictive maintenance and anomaly detection techniques.\nInternship or academic projects related to AI or machine learning.\n \nAt BNSF, you will have access to a comprehensive and competitive benefits package including:\n\nAn industry-leading 401(k) and renowned Railroad Retirement program.\nA range of robust health care options for you and your dependents (including domestic partners), including medical, dental, vision, telemedicine, mental health, cancer support, and high-quality care network options.\nHealth care spending accounts (HSA) with employer contributions, as well as life and disability insurance, provided at no cost.\nFamily benefits including parental, pediatric and family building support, adoption and surrogacy reimbursement, and dependent care spending account (with employer match).\nAccess to discounts on travel, gym memberships, counseling services and wellness support.\nAnnual bonus (Incentive Compensation Program)\nGenerous leave / time off policies.\nFor more information, visit Benefits.\nPlease be aware of potential fraud that can occur when searching for new career opportunities. Please review our FAQ for more information and awareness.\n\nAll positions require pre-employment background verification.\n\nBNSF Railway is an Equal Opportunity Employer, all qualified applicants receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability or protected veteran status."
+}

@@ -12,3 +12,5 @@ docx
 pillow
 google-genai
 langchain-google-genai
+exa-py 
+requests
