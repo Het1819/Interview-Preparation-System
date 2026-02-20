@@ -1,0 +1,78 @@
+{
+  "file_path": "D:\\End to end Job Description and Resume Analyser\\interview-prep-system\\documents\\Naval_Dhandha_DA (1).pdf",
+  "doc_type": "resume",
+  "summary": "Naval Dhandha is a Data Analyst and Engineer with 4+ years of experience in building decision-grade analytics for ops and product teams. Skilled in building ETL pipelines, automating reporting workflows, and identifying operational bottlenecks using SQL, Power BI, and Python. Adept at collaborating with cross-functional teams to deliver data solutions that improve efficiency, reduce costs, and optimize delivery performance. Passionate about transforming complex data into meaningful stories that accelerate innovation and execution.",
+  "key_points": [
+    "4+ years of experience in data analysis and engineering.",
+    "Expertise in building ETL pipelines and automating reporting workflows.",
+    "Proficient in SQL, Power BI, and Python.",
+    "Experience with GCP, Azure, Hadoop, Snowflake, and SAP BW/4HANA.",
+    "Strong background in designing interactive dashboards and delivering tailored reports.",
+    "Proven ability to improve forecast accuracy, reduce excess stock, and optimize operational costs.",
+    "Experience in both batch and streaming data workflows."
+  ],
+  "entities": {
+    "Skills & Certifications": [
+      "MySQL",
+      "Microsoft Power BI",
+      "Looker",
+      "Tableau",
+      "MS Excel",
+      "SQL",
+      "Python (Pandas, NumPy, scikit-learn, Matplotlib, seaborn)",
+      "Google BigQuery",
+      "Power Query",
+      "Hadoop (Pig, Hive, HDFS)",
+      "Azure",
+      "GCP",
+      "Snowflake",
+      "BW/4HANA",
+      "Airflow",
+      "JIRA",
+      "Service Now",
+      "Agile",
+      "Docker (Basic)",
+      "dbt (Basic)",
+      "ETL Pipelines",
+      "Data Ingestion/Wrangling",
+      "KPI Reporting",
+      "Forecasting",
+      "Data Validation",
+      "CI/CD",
+      "Google Data Analytics (Coursera)",
+      "Tableau BI Analyst (Coursera)"
+    ],
+    "Professional Experience": [
+      "Bayer Crop Science (Data Analyst)",
+      "InfoWay Solutions (Data Engineer I)",
+      "Syngenta Global, Infosys Ltd (Senior Data Analyst (SSE))",
+      "Syngenta Global, Infosys Ltd (Data Analyst (SE))"
+    ],
+    "Education": [
+      "The University of Texas at Dallas (M.S., Information Technology Management)",
+      "Dwarkadas J. Sanghvi College of Engineering (B.E., Electronics Engineering)"
+    ],
+    "Locations": [
+      "New York, NY",
+      "Muscatine, Iowa",
+      "Mumbai, India",
+      "Pune, India",
+      "Dallas, TX"
+    ],
+    "Roles": [
+      "Data Analyst",
+      "Data Engineer",
+      "Senior Data Analyst (SSE)",
+      "Data Analyst (SE)"
+    ],
+    "Companies": [
+      "Bayer Crop Science",
+      "InfoWay Solutions",
+      "Syngenta Global",
+      "Infosys Ltd",
+      "The University of Texas at Dallas",
+      "Dwarkadas J. Sanghvi College of Engineering"
+    ]
+  },
+  "raw_text_preview": "Naval Dhandha | Data Analyst & Engineer \nNew York, NY | 469-855-3999 | dhandhanaval@gmail.com| https://www.linkedin.com/in/naval-dhandha \n \nSUMMARY  \nData Analyst with Engineer 4+ years of experience in building decision-grade analytics for ops and product teams. Skilled in building  ETL \npipelines, automating reporting workflows, and identifying operational bottlenecks using SQL, Power BI, and Python. Adept at collaborating \nwith cross-functional teams to deliver data solutions that improve efficiency, reduce costs, and optimize delivery performance. Passionate \nabout transforming complex data into meaningful stories that accelerate innovation and execution.  \nPROFESSIONAL EXPERIENCE \nBayer Crop Science | Data Analyst | Muscatine, Iowa  Jan 2025 – May 2025 \n• Automated GCP-to-Power BI pipelines using SQL and Power Query, cutting refresh latency by 40% while ensuring end-to-end accuracy and \nscalability across high-volume supply chain reporting workflows. \n• Designed and deployed interactive dashboards for packaging, fleet, and material planning, enabling real-time monitoring that drove 15% \nfaster responses to capacity constraints across 3+ departments.  \n• Partnered with operations and planning leaders to identify KPIs, translate evolving business needs into data solutions, and deliver tailored \nreports that enhanced visibility, strengthened cross-functional alignment, and improved material availability.  \nInfoWay Solutions | Data Engineer I | Mumbai, India  Sep 2022 – Jul 2023  \n• Designed and automated end-to-end Azure data pipelines (Data Factory, Databricks, Data Lake) integrating POS, customer, and inventory \ndata to deliver real-time, high-quality datasets for retail analytics and supply chain decisions.  \n• Built hybrid batch and streaming data workflows (Flume,  Hive, HDFS) to process large -scale ad impression and clickstream data in near \nreal time, cutting processing time by 60% and powering advertiser performance dashboards and measurement reports.  \n• Enabled low -latency insights, anomaly detection, and KPI -driven campaign optimization (impressions, CTR, conversion rate) by \nengineering scalable, reliable data infrastructure that met strict SLAs for marketing and analytics teams.  \nSyngenta Global, Infosys Ltd | Senior Data Analyst (SSE) | Pune, India Dec 2020 – Aug 2022 \n• Applied SQL and Python to analyze global logistics and inventory datasets, uncovering patterns that increased forecast accura cy by 20% \nand reduced excess stock, saving the organization $180K annually in carrying costs.  \n• Built and optimized centralized ETL workflows to integrate SAP and ERP data, improving data retrieval speed by 40%, ensuring consistent \ngovernance, and enabling faster access to insights for cross-regional supply chain teams. \n• Designed and implemented Tableau/Power BI dashboards to visualize KPIs, delivering weekly analytics to senior leadership that improved \ntransparency, supported strategic decision-making, and guided operational cost optimization. \nSyngenta Global, Infosys Ltd | Data Analyst (SE) | Pune, India                                                                               Aug 2019 – Nov 2020 \n• Built scalable ETL pipelines in SAP BW/4HANA and BEX, reducing manual interventions by 85% and strengthening auditability and  \ngovernance of financial reporting workflows. \n• Developed a predictive demand model in Python with 96% short -term accuracy, embedding results into Power BI dashboards that \ninformed procurement and sourcing strategies. \n• Automated recurring reporting processes with Airflow, shortening turnaround time for monthly reports by 50% and improving \nstakeholder visibility into operational KPIs. \nPROJECTS \nCustomer Skilling and Behavior Analysis Jan 2024 – Apr 2024 \n• Designed and automated an end -to-end Azure data engineering pipeline (Data Factory, Databricks) integrating POS, customer, and \ninventory data for real-time analytics and actionable insights on sales, demand, and customer behavior.  \nBig Data project Aug 2024 – Dec 2024 \n• Designed hybrid batch and streaming data pipelines (Flume, Sqoop, Hive, HDFS) to process ad impression and clickstream data i n near \nreal time, reducing processing time by 60% and delivering low-latency insights, anomaly detection, and KPI-driven campaign optimization \nfor advertisers. \nEDUCATION \nThe University of Texas at Dallas – M.S., Information Technology Management, Dallas, TX Aug 2023 – May 2025 \nDwarkadas J. Sanghvi College of Engineering – B.E., Electronics Engineering, Mumbai, India     Jul 2015 – Jun 2019  \n \nSKILLS & CERTIFICATIONS \n \nAnalysis & Visualization Tools: MySQL, Microsoft Power BI, Looker, Tableau, MS Excel \nProgramming: SQL, Python (Pandas, NumPy, scikit-learn, Matplotlib, seaborn), Google BigQuery, Power Query \nTools: Hadoop (Pig, Hive, HDFS), Azure, GCP, Snowflake, BW/4HANA, Airflow, JIRA, Service Now, Agile, Docker (Basic), dbt (Basic) \nConcepts: ETL Pipelines, Data Ingestion/Wrangling, KPI Reporting, Forecasting, Data Validation, CI/CD \nCertifications: Google Data Analytics (Coursera), Tableau BI Analyst (Coursera) \n \nORGANIZATION / VOLUNTEER \n Events Head, IEEE Student Committee | DJ Sanghvi College of Engineering  Aug 2018 – Mar 2019 \n"
+}
