@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 import os
+import re
 import json
 import argparse
 import smtplib
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from email.message import EmailMessage
 
@@ -35,41 +39,104 @@ def safe_get(d: Dict[str, Any], keys: List[str], default=None):
 
 
 # ----------------------------
-# Agent 1 parsing: email/name
+# Agent 1 parsing: email/name (robust)
 # ----------------------------
+EMAIL_REGEX = re.compile(r"[\w\.-]+@[\w\.-]+\.\w+")
+
+
+def _find_email_in_any(value: Any) -> Optional[str]:
+    """Recursively search for first email in nested strings/lists/dicts."""
+    if value is None:
+        return None
+
+    if isinstance(value, str):
+        match = EMAIL_REGEX.search(value)
+        return match.group(0).strip() if match else None
+
+    if isinstance(value, list):
+        for item in value:
+            found = _find_email_in_any(item)
+            if found:
+                return found
+        return None
+
+    if isinstance(value, dict):
+        # Try common direct keys first
+        for k in ["email", "candidate_email", "recipient_email", "mail"]:
+            if k in value:
+                found = _find_email_in_any(value.get(k))
+                if found:
+                    return found
+        # Then scan all values
+        for v in value.values():
+            found = _find_email_in_any(v)
+            if found:
+                return found
+        return None
+
+    return None
+
+
 def extract_candidate_contact(agent1: Dict[str, Any]) -> Tuple[Optional[str], Optional[str]]:
     """
-    Tries multiple common locations:
-    - entities["Contact Information"] list
-    - entities["contact_information"] list
-    - raw_text_preview search (fallback)
+    Extract candidate email + name from Agent 1 JSON.
+
+    Priority:
+    1) Top-level common keys
+    2) entities (common labels + recursive fallback)
+    3) raw_text_preview (email + first line name)
+    4) top-level name fallback
     """
-    entities = agent1.get("entities", {}) or {}
-    contact_list = None
-
-    # Common keys
-    for k in ["Contact Information", "contact_information", "contact info", "contact"]:
-        if k in entities and isinstance(entities[k], list):
-            contact_list = entities[k]
-            break
-
     email = None
     name = None
 
-    # Try from contact list
-    if contact_list:
-        for item in contact_list:
-            if isinstance(item, str) and "@" in item and "." in item:
-                email = item.strip()
+    # 1) Top-level direct keys
+    for k in ["email", "candidate_email", "recipient_email"]:
+        if k in agent1:
+            email = _find_email_in_any(agent1.get(k))
+            if email:
                 break
 
-    # Name: try raw_text_preview first line
+    # 2) Entities search
+    entities = agent1.get("entities", {}) or {}
+    if not email and isinstance(entities, dict):
+        # Common contact sections
+        for k in [
+            "Contact Information",
+            "contact_information",
+            "contact info",
+            "contact",
+            "Contact",
+            "Personal Information",
+            "personal_info",
+        ]:
+            if k in entities:
+                email = _find_email_in_any(entities[k])
+                if email:
+                    break
+
+        # Fallback: scan all entities
+        if not email:
+            email = _find_email_in_any(entities)
+
+    # 3) raw_text_preview fallback
     raw_preview = agent1.get("raw_text_preview", "") or ""
     if raw_preview:
-        first_line = raw_preview.splitlines()[0].strip()
+        lines = raw_preview.splitlines()
+        first_line = lines[0].strip() if lines else ""
         if first_line:
-            # Often "Name | Title"
+            # Example: "Naval Dhandha | Data Analyst & Engineer"
             name = first_line.split("|")[0].strip()
+
+        if not email:
+            email = _find_email_in_any(raw_preview)
+
+    # 4) Top-level name fallback
+    if not name:
+        for k in ["name", "candidate_name", "full_name"]:
+            if isinstance(agent1.get(k), str) and agent1.get(k).strip():
+                name = agent1[k].strip()
+                break
 
     return email, name
 
@@ -160,10 +227,10 @@ def build_pdf(
 
     agent1_file = safe_get(agent3, ["input", "agent1_file"], default=None)
     agent2_file = safe_get(agent3, ["input", "agent2_file"], default=None)
-    if agent1_file:
-        story.append(Paragraph(f"<b>Resume File:</b> {agent1_file}", meta_style))
-    if agent2_file:
-        story.append(Paragraph(f"<b>Research File:</b> {agent2_file}", meta_style))
+    # if agent1_file:
+    #     story.append(Paragraph(f"<b>Resume File:</b> {agent1_file}", meta_style))
+    # if agent2_file:
+    #     story.append(Paragraph(f"<b>Research File:</b> {agent2_file}", meta_style))
 
     story.append(Spacer(1, 0.25 * inch))
 
@@ -171,27 +238,31 @@ def build_pdf(
     story.append(Paragraph("Top 30 Questions with Detailed Answers", h_style))
 
     top_30 = agent3.get("top_30", []) or []
-    # group by round
     by_round: Dict[str, List[Dict[str, Any]]] = {}
     for item in top_30:
         r = item.get("round", "Unknown Round")
         by_round.setdefault(r, []).append(item)
 
-    for r, items in by_round.items():
-        story.append(Paragraph(f"Round: {r}", h_style))
+    for round_name, items in by_round.items():
+        story.append(Paragraph(f"Round: {round_name}", h_style))
+
         for idx, qa in enumerate(items, start=1):
-            q = qa.get("question", "").strip()
-            a = qa.get("answer", "").strip()
-            focus = qa.get("focus_area", "")
-            diff = qa.get("difficulty", "")
+            q = str(qa.get("question", "")).strip()
+            a = str(qa.get("answer", "")).strip()
+            focus = str(qa.get("focus_area", "")).strip()
+            diff = str(qa.get("difficulty", "")).strip()
 
             if q:
                 story.append(Paragraph(f"Q{idx}. {q}", q_style))
+
             if focus or diff:
                 tags = " | ".join([t for t in [focus, diff] if t])
                 story.append(Paragraph(f"<i>{tags}</i>", meta_style))
+
             if a:
+                # Preserve line breaks for readable PDF output
                 story.append(Paragraph(a.replace("\n", "<br/>"), a_style))
+
         story.append(Spacer(1, 0.1 * inch))
 
     story.append(PageBreak())
@@ -203,7 +274,7 @@ def build_pdf(
         story.append(Paragraph("No top_20_questions found in JSON.", meta_style))
     else:
         for i, q in enumerate(top_20, start=1):
-            story.append(Paragraph(f"{i}. {q}", a_style))
+            story.append(Paragraph(f"{i}. {str(q)}", a_style))
 
     # Notes
     notes = agent3.get("notes", []) or []
@@ -253,45 +324,66 @@ def send_email_with_attachment(
 # Main CLI
 # ----------------------------
 def main():
-    parser = argparse.ArgumentParser(description="Agent 4: Create PDF from Agent 3 JSON and email it to candidate.")
+    parser = argparse.ArgumentParser(
+        description="Agent 4: Create PDF from Agent 3 JSON and email it to candidate."
+    )
     parser.add_argument("--agent1_json", required=True, help="Path to Agent 1 output JSON")
     parser.add_argument("--agent3_json", required=True, help="Path to Agent 3 output JSON")
     parser.add_argument("--out_dir", default="app/output", help="Directory to save PDF")
     parser.add_argument("--pdf_name", default=None, help="Optional PDF filename")
     parser.add_argument("--send_email", action="store_true", help="If set, email will be sent")
 
-    # Email config (env-based)
-    parser.add_argument("--to_email", default=None, help="Override recipient email (else extracted from Agent 1)")
+    # Email config (env-based + optional override)
+    parser.add_argument(
+        "--to_email",
+        default=None,
+        help="Override recipient email (otherwise extracted from Agent 1 resume JSON)",
+    )
     parser.add_argument("--subject", default="Your Interview Q&A Pack", help="Email subject")
 
     args = parser.parse_args()
 
+    # Load JSONs
     agent1 = load_json(args.agent1_json)
     agent3 = load_json(args.agent3_json)
 
+    # Extract candidate details from Agent 1
     extracted_email, candidate_name = extract_candidate_contact(agent1)
-    recipient = args.to_email or extracted_email
 
-    if not os.path.exists(args.out_dir):
-        os.makedirs(args.out_dir, exist_ok=True)
+    # CLI override takes priority, then Agent1 extracted email
+    recipient = (args.to_email or extracted_email or "").strip() or None
 
+    # Output dir
+    os.makedirs(args.out_dir, exist_ok=True)
+
+    # PDF name
     pdf_filename = args.pdf_name or f"interview_qa_pack_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
     pdf_path = os.path.join(args.out_dir, pdf_filename)
 
     # Create PDF
     build_pdf(agent3, pdf_path, candidate_name=candidate_name, candidate_email=recipient)
 
-    print(json.dumps({
-        "status": "pdf_created",
-        "pdf_path": pdf_path,
-        "candidate_name": candidate_name,
-        "recipient_email": recipient
-    }, indent=2))
+    print(
+        json.dumps(
+            {
+                "status": "pdf_created",
+                "pdf_path": pdf_path,
+                "candidate_name": candidate_name,
+                "recipient_email": recipient,
+                "email_source": "cli_override" if args.to_email else ("agent1_resume" if extracted_email else None),
+            },
+            indent=2,
+        )
+    )
 
-    # Send email if requested
+    # Send email only if flag is provided
     if args.send_email:
         if not recipient:
-            raise ValueError("No recipient email found. Provide --to_email or ensure Agent1 has an email.")
+            raise ValueError(
+                "No recipient email found.\n"
+                "Agent 1 did not extract a valid email from resume.\n"
+                "Pass --to_email 'candidate@example.com' or improve Agent 1 contact extraction."
+            )
 
         smtp_host = os.getenv("SMTP_HOST", "smtp.gmail.com")
         smtp_port = int(os.getenv("SMTP_PORT", "587"))
@@ -300,13 +392,18 @@ def main():
         from_email = os.getenv("FROM_EMAIL", smtp_user)
 
         if not smtp_user or not smtp_password:
-            raise EnvironmentError("Missing SMTP_USER / SMTP_PASSWORD env vars (use Gmail App Password).")
+            raise EnvironmentError(
+                "Missing SMTP_USER / SMTP_PASSWORD env vars. "
+                "If using Gmail, use an App Password (not your normal password)."
+            )
 
+        greeting_name = candidate_name or "Candidate"
         body = (
-            f"Hi {candidate_name or ''},\n\n"
+            f"Hi {greeting_name},\n\n"
             "Please find attached your Interview Q&A Pack.\n\n"
-            "Thanks,\nRecruitRiders Team"
-        ).strip()
+            "Thanks,\n"
+            "RecruitRiders Team"
+        )
 
         send_email_with_attachment(
             to_email=recipient,
@@ -320,12 +417,33 @@ def main():
             smtp_password=smtp_password,
         )
 
-        print(json.dumps({
-            "status": "email_sent",
-            "to": recipient,
-            "pdf_path": pdf_path
-        }, indent=2))
+        print(
+            json.dumps(
+                {
+                    "status": "email_sent",
+                    "to": recipient,
+                    "pdf_path": pdf_path,
+                },
+                indent=2,
+            )
+        )
 
 
 if __name__ == "__main__":
     main()
+
+
+# ----------------------------
+# Usage Examples
+# ----------------------------
+# Only create the PDF
+# python -m app.agents.agent_4_dispatcher --agent1_json "app/output/agent1.json" --agent3_json "app/output/agent_3_output.json"
+
+# Create PDF and send email (email extracted from Agent1 resume)
+# python -m app.agents.agent_4_dispatcher --agent1_json "app/output/agent1.json" --agent3_json "app/output/agent_3_output.json" --send_email
+
+
+
+
+# Create PDF and send email to manually provided recipient (fallback / override)
+# python -m app.agents.agent_4_dispatcher --agent1_json "app/output/agent1.json" --agent3_json "app/output/agent_3_output.json" --send_email --to_email "candidate@example.com"

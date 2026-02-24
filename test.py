@@ -1,11 +1,44 @@
-from document_loader import SmartLoader
-pdf_loader = SmartLoader()
-# job_data = pdf_loader.load_image("01_test_case.png")
-job_data = pdf_loader.load_docx("JD FOR KNOWN.docx")
-resume_data = pdf_loader.load_pdf("Naval_Dhandha_DA (1).pdf") 
+import smtplib
+from email.message import EmailMessage
 
-print(resume_data)
-print(job_data)
+# 1. Setup your credentials and content
+email_sender = "het.patel.ias@gmail.com"
+email_password = "coafrmautnxqyyrf"  # Not your regular password!
+email_receiver = "phet6011@gmail.com"
+
+subject = "Check out this Python script!"
+body = "Hello! This email was sent directly from a Python script. Neat, right?"
+
+# 2. Create the email structure
+em = EmailMessage()
+em['From'] = email_sender
+em['To'] = email_receiver
+em['Subject'] = subject
+em.set_content(body)
+
+# 3. Connect to the server and send
+# Using Gmail's SMTP server as an example
+try:
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(email_sender, email_password)
+        smtp.send_message(em)
+    print("Email sent successfully!")
+except Exception as e:
+    print(f"Something went wrong: {e}")
+
+
+
+
+
+
+# from document_loader import SmartLoader
+# pdf_loader = SmartLoader()
+# # job_data = pdf_loader.load_image("01_test_case.png")
+# job_data = pdf_loader.load_docx("JD FOR KNOWN.docx")
+# resume_data = pdf_loader.load_pdf("Naval_Dhandha_DA (1).pdf") 
+
+# print(resume_data)
+# print(job_data)
 
 
 # from google import genai

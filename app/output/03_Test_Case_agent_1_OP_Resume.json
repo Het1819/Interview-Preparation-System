@@ -1,0 +1,96 @@
+{
+  "file_path": "D:\\End to end Job Description and Resume Analyser\\interview-prep-system\\documents\\03_Test_Case_Resume.pdf",
+  "doc_type": "resume",
+  "summary": "Data Analyst with practical experience in Python, SQL, Excel, and Power BI, specializing in data preprocessing, analysis, and visualization. Hands-on exposure to real-world datasets through internships and simulations, with experience in dashboard creation, reporting, and version control using Git/GitHub. Strong analytical mindset with the ability to translate data into actionable insights and collaborate effectively with cross-functional teams.",
+  "key_points": [
+    "Practical experience in Python, SQL, Excel, and Power BI.",
+    "Specializes in data preprocessing, analysis, and visualization.",
+    "Experience in dashboard creation, reporting, and version control using Git/GitHub.",
+    "Strong analytical mindset with the ability to translate data into actionable insights.",
+    "Analyzed recruitment and business data to generate actionable insights.",
+    "Cleaned, validated, and transformed large datasets.",
+    "Created dashboards and MIS reports to track KPIs.",
+    "Completed a hands-on job simulation covering real-world data analytics tasks with Accenture.",
+    "Assisted in developing a machine learning model for gender and age detection as a Data Science Intern.",
+    "Enhanced problem-solving and debugging abilities in web design with React JS.",
+    "Proficient in SDLC (Agile, Scrum) methodologies.",
+    "Skilled in Python, R, SQL, NumPy, Pandas, Matplotlib, Scikit learn, Keras, TensorFlow.",
+    "Experienced with SQL Server, PostgreSQL, MySQL, MongoDB databases.",
+    "Proficient in Tableau, Power BI, and Excel for visualization.",
+    "Familiar with Git, GitHub, Jira, Git Bash.",
+    "Completed Employability Skills Program - Advanced and Git Training.",
+    "Holds a Diploma in Computer Engineering and pursuing a BE in Computer Engineering from Gujarat Technological University."
+  ],
+  "entities": {
+    "Name": [
+      "PATEL HET ASHISHKUMAR"
+    ],
+    "Email": [
+      "hetp12005@gmail.com"
+    ],
+    "Phone": [
+      "7359302173"
+    ],
+    "Location": [
+      "Mehsana, Gujarat",
+      "GUJARAT, India"
+    ],
+    "LinkedIn": [
+      "linkedin.com/in/het-patel-b70806245"
+    ],
+    "GitHub": [
+      "github.com/Hetpatel2211"
+    ],
+    "Skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Power BI",
+      "Git",
+      "GitHub",
+      "NumPy",
+      "Pandas",
+      "Matplotlib",
+      "Scikit learn",
+      "Keras",
+      "TensorFlow",
+      "SQL Server",
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "Tableau",
+      "Power BI",
+      "DAX",
+      "Excel",
+      "Pivot Table",
+      "Pivot Chart",
+      "VLOOKUP",
+      "XLOOKUP",
+      "VBA",
+      "Jira",
+      "Git Bash",
+      "R",
+      "Visual Studio Code",
+      "PyCharm",
+      "Jupyter Notebook",
+      "SDLC (Agile, Scrum)",
+      "React JS"
+    ],
+    "Experience": [
+      "Technical Expert in Data Analyst at Recruit Riders Technology (2025/02 – Present)",
+      "Data Analytics and Visualization Job Simulation at Accenture (2024/12 – 2025/02)",
+      "Data Science Intern at NULLCLASS (2024/08)",
+      "Web Design with React JS at Brainy Beam (2023/06 – 2023/07)"
+    ],
+    "Education": [
+      "BE in Computer Engineering at Gujarat Technological University (2024/07 – present)",
+      "Diploma in Computer Engineering at Gujarat Technological University (2021 – 2024/07)"
+    ],
+    "Courses": [
+      "Employability Skills Program - Advanced at Wadhwani Foundation (2024/01 – 2024/03)",
+      "Git Training at IIT BOMBAY (2024/04)",
+      "Python crash course at Neural class Academy"
+    ]
+  },
+  "raw_text_preview": "PATEL HET ASHISHKUMAR\nData Analyst\nhetp12005@gmail.com\n \n7359302173\n \nMehsana, Gujarat\n \n2005/11/22\n \nlinkedin.com/in/het-patel-b70806245\n \ngithub.com/Hetpatel2211\n \nPROFESSIONAL SUMMARY\nData Analyst with practical experience in Python, SQL, Excel, and Power BI, specializing in data preprocessing, analysis, and visualization. \nHands-on exposure to real-world datasets through internships and simulations, with experience in dashboard creation, reporting, and version \ncontrol using Git/GitHub. Strong analytical mindset with the ability to translate data into actionable insights and collaborate effectively with \ncross-functional teams.\nPROFESSIONAL EXPERIENCE\nTechnical Expert in Data Analyst\nRecruit Riders Technology\n•Analyzed recruitment and business data to generate actionable insights using Python, SQL, and Excel.\n2025/02 – Present\nMehsana, Gujrat\n•Cleaned, validated, and transformed large datasets to ensure data accuracy and reporting reliability.\n•Created dashboards and MIS reports to track KPIs such as time-to-hire and recruiter performance.\n•Collaborated with cross-functional teams to convert business requirements into analytical reports.\nData Analytics and Visualization Job Simulation\nAccenture\n•Completed a hands-on job simulation covering real-world data analytics tasks.\n2024/12 – 2025/02\n•Gained experience in data storytelling and presenting insights to clients.\n•Worked with datasets to clean, model, and visualize data effectively.\nData Science Intern\nNULLCLASS\n•As an intern at NullClass, I assist in developing a machine learning model for gender and age detection\n2024/08\n•My role includes data preprocessing, model implementation, optimization, debugging code, and documenting \nprogress to enhance model accuracy and performance\nWeb Design with React JS\nBrainy Beam\n•Enhanced problem-solving and debugging abilities in a fast-paced environment.\n2023/06 – 2023/07\n•Collaborated with a team to implement user-friendly interfaces and optimize web performance.\n•Successfully completed all assigned tasks, demonstrating commitment, adaptability, and teamwork.\nTECHNICAL SKILLS\nMethodologies: SDLC(Agile, Scrum)\nProgramming Language & IDEs: Python,R,SQL; Visual Studio Code,PyCharm, Jupyter Notebook\nPython Packages: NumPy,Pandas,Matplotlib,Scikit learn,Keras,TensorFlow\nDatabase: SQL Server,PostgreSQL,MySQL,MongoDB\nVisualization Tools: Tableau, Power BI (Power Query,DAX), Excel (Pivot Table,Pivot Chart,VLOOKUP, XLOOKUP,VBA)\nOther Tools: Git,GitHub,Jira,Git Bash\nCOURSES\nEmployability Skills Program - Advanced\nWadhwani Foundation\n•Successfully completed an advanced program focused on workplace readiness skills.\n2024/01 – 2024/03\n•Developed soft skills essential for professional success\nGit Training\nIIT BOMBAY\n•Training focused on Git version control, including repository management, branching, merging, and \ncollaboration.\n2024/04\n•Gained hands-on experience in Git commands, commit history, resolving merge conflicts, and best practices.\nPython crash course\nNeural class Academy\n•Knowledge of basic Python syntax, data types, and functions\n•Experience with control flow statements (loops, conditionals)\n•Familiarity with data structures (lists, tuples, dictionaries)\nEDUCATION\nBE in Computer Engineering\nGujarat Technological University\n2024/07 – present\nDiploma in Computer Engineering\nGujarat Technological University\n8.81 CGPA\n2021 – 2024/07\nGUJARAT, India\n"
+}

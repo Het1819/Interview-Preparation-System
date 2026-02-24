@@ -26,6 +26,8 @@ import re
 import json
 import argparse
 from typing import Any, Dict, List, Optional
+from dotenv import load_dotenv
+load_dotenv()
 
 from pydantic import BaseModel, Field
 
@@ -303,7 +305,7 @@ def main():
     parser.add_argument("--agent1_json", required=True, help="Path to Agent 1 output JSON file")
     parser.add_argument("--agent2_json", required=True, help="Path to Agent 2 output JSON file")
     parser.add_argument("--interview_rounds", required=True, help="Interview rounds (separate by ; or , or newline)")
-    parser.add_argument("--out_json", default="app/output/agent3_qa.json", help="Output path for Agent 3 JSON")
+    parser.add_argument("--out_json", default="app/output/03_Test_Case_agent3_qa_02.json", help="Output path for Agent 3 JSON")
 
     args = parser.parse_args()
 
@@ -332,7 +334,7 @@ def main():
 
     print(f"[Agent3] Output written to: {args.out_json}")
     print(json.dumps(out if "error" in out else {"status": "ok"}, indent=2, ensure_ascii=False))
-    with open("app/output/agent_3_QA.json", "w",encoding="utf-8") as f:
+    with open("app/output/03_Test_case_agent_3_QA.json", "w",encoding="utf-8") as f:
         json.dump(out,f,indent=2,ensure_ascii=False)
 
 if __name__ == "__main__":
@@ -344,3 +346,6 @@ if __name__ == "__main__":
 # Round 3 - Technical (Project + Design)
 # Round 4 - Hiring Manager
 # Round 5 - Behavioral
+
+# Run the 3rd Agent
+# python -m app.agents.agent_3_qa_gen --agent1_json "app/output/agent1.json" --agent2_json "app/output/agent2.json" --interview_rounds "Recruiter Screen; Technical Round 1 (SQL/Python); Technical Round 2 (BI/ETL); Hiring Manager; Behavioral" --out_json "app/output/agent3_qa.json"
