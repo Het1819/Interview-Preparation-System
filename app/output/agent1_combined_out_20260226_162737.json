@@ -1,0 +1,88 @@
+{
+  "doc_type": "combined_resume_and_jd",
+  "resume_data": {
+    "file_path": "documents/Het/02_Test_Case_Resume.pdf",
+    "doc_type": "resume",
+    "summary": "Het Patel is an aspiring AI Engineer with a strong background in Python, SQL, and various machine learning libraries like TensorFlow and Scikit-learn. They have experience in designing multi-agent workflows, deploying applications with Docker, and solving real-world problems with data-driven solutions. Their professional experience includes roles in technical support, machine learning, and data science, where they developed churn prediction models, optimized training workflows, and designed data cleaning pipelines. Key projects include a medical analysis agent using Google Gemini, a content-based recommendation engine, and a face recognition attendance system.",
+    "key_points": [
+      "Aspiring AI Engineer with interest in Generative AI and Predictive Analytics.",
+      "Skilled in Python, SQL, Machine Learning, Multi-Agent Systems, LLMs, NLP, Computer Vision, TensorFlow, Scikit-learn, Docker, Git, CI/CD, Flask, Streamlit, FastAPI, Data Preprocessing, Feature Engineering, Pandas, NumPy, Tableau.",
+      "Provided technical support for AI and Machine Learning development.",
+      "Developed Customer Churn Prediction models using TensorFlow, achieving a 15% reduction in false positives.",
+      "Refactored training workflows with vectorised NumPy operations, resulting in a 20% acceleration in model training speed.",
+      "Designed automated data cleaning and normalisation pipelines for raw client data.",
+      "Conducted statistical analysis on user behaviour datasets to identify key churn indicators.",
+      "Built a medical analysis agent (Healthcare Helper) using Google Gemini and Flask, achieving 95% extraction accuracy on OCR.",
+      "Engineered a content-based recommendation engine (Spotify Preference Modelling) using K-Means clustering and PCA.",
+      "Developed a real-time attendance automation system (Face Recognition Attendance System) using Python and OpenCV.",
+      "Holds a B.E. in Information Technology from Gujarat Technological University with a CGPA of 8.23."
+    ],
+    "entities": {
+      "Programming Languages": [
+        "Python",
+        "SQL"
+      ],
+      "Libraries/Frameworks": [
+        "TensorFlow",
+        "Scikit-learn",
+        "Pandas",
+        "NumPy",
+        "Flask",
+        "Streamlit",
+        "FastAPI",
+        "OpenCV"
+      ],
+      "Tools/Platforms": [
+        "Docker",
+        "Git",
+        "CI/CD",
+        "Tableau",
+        "Google Gemini"
+      ],
+      "Concepts/Techniques": [
+        "Machine Learning",
+        "Multi-Agent Systems",
+        "LLMs",
+        "NLP",
+        "Computer Vision",
+        "Data Preprocessing",
+        "Feature Engineering",
+        "Hyperparameter Optimisation",
+        "Vectorised NumPy operations",
+        "Statistical Analysis",
+        "K-Means clustering",
+        "PCA",
+        "OCR"
+      ],
+      "Companies": [
+        "Recruit Riders Technologies",
+        "Space-O Technology",
+        "FusionBit"
+      ],
+      "Universities": [
+        "Gujarat Technological University"
+      ],
+      "Projects": [
+        "Healthcare Helper (Medical Analysis Agent)",
+        "Spotify Preference Modelling",
+        "Face Recognition Attendance System"
+      ],
+      "Roles": [
+        "AI Engineer",
+        "Technical Expert",
+        "Machine Learning Intern",
+        "Data Science Intern"
+      ],
+      "Locations": [
+        "Ahmedabad",
+        "Mahesana",
+        "India"
+      ]
+    },
+    "raw_text_preview": "HET PATEL \n \nAhmedabad, India | +91 9725647609 | phet4311@gmail.com | LinkedIn | GitHub \nPROFESSIONAL SUMMARY \nAspiring AI Engineer with an interest in Generative AI and Predictive Analytics. Skilled in \nPython, SQL, and various machine learning libraries, including  TensorFlow and Scikit-learn. \nExperienced in designing multi-agent workflows and deploying basic applications with Docker \nand interested in solving real-world problems with data-driven solutions. \nTECHNICAL SKILLS \nPython, SQL, Machine Learning, Multi -Agent Systems, LLMs, NLP , Computer Vision, \nTensorFlow, Scikit-learn, Docker, Git, CI/CD, Flask, Streamlit, FastAPI, Data Preprocessing, \nFeature Engineering, Pandas, NumPy, Tableau \nPROFESSIONAL EXPERIENCE \nRecruit Riders Technologies | Technical Expert Mahesana | Dec 2025 – Present \n• Provided technical support for AI and Machine Learning development using Python. \n• Assisted in code optimisation and debugging to ensure smooth software performance. \nSpace-O Technology | Machine Learning Intern Ahmedabad | Aug 2024 – Feb 2025 \n• Developed Customer Churn Prediction models using TensorFlow, achieving a 15% \nreduction in false positives through hyperparameter optimisation (Grid Search). \n• Refactored training workflows with vectorised NumPy operations, resulting in a 20% \nacceleration in model training speed for large-scale datasets. \nFusionBit | Data Science Intern Ahmedabad | Jan 2024 – Apr 2024 \n• Designed automated data cleaning and normalisation pipelines for raw client data to \nensure high-quality input features. \n• Conducted statistical analysis on user behaviour datasets to identify key churn \nindicators, directly influencing feature selection for production models. \nPROJECTS \nHealthcare Helper (Medical Analysis Agent): Built a medical analysis agent using Google  \nGemini and Flask to extract clinical data from prescription images and achieved 95% \nextraction accuracy on OCR.  \nSpotify Preference Modelling : Analysed 85,000+ tracks to engineer a content -based \nrecommendation engine using K-Means clustering and PCA for dimensionality reduction. \nFace Recognition Attendance System : Developed a real -time attendance automation \nsystem using Python and OpenCV to streamline user identification processes. \nEDUCATION \nB.E. Information Technology | Gujarat Technological University | CGPA: 8.23  \nGraduated: 2024  \n \n"
+  },
+  "jd_data": {
+    "error": "Failed to parse JSON from agent output.",
+    "raw_output": "```json\n{\n\"file_path\": \"documents/Het/JD.pdf\",\n\"doc_type\": \"job_description\",\n\"summary\": \"This is a job description for a Software Engineer specializing in AI/Model-first Business Solutions within the Microsoft Dynamics 365 Business Central team. The role focuses on developing and maintaining scalable business solutions that integrate generative AI, utilizing technologies such as C#, .NET, and Azure.\",\n\"key_points\": [\n\"Develop and maintain highly scalable world-class business solutions incorporating generative AI innovation.\",\n\"Design, code, test, and deploy robust, scalable, and high-performance AI/Model-first features using C#, .NET, Azure, and modern AI technologies.\",\n\"Collaborate with product managers, UX researchers, AI researchers, and other engineers to translate business requirements into solutions.\",\n\"Actively participate in agile processes, including planning, design, and sprint retrospectives.\",\n\"Enhance system quality through code reviews and developing test automation.\",\n\"Contribute to live service health by monitoring performance, investigating, and resolving production issues.\",\n\"Required: Bachelor's degree in Computer Science, Engineering, or related field, or equivalent industry experience.\",\n\"Required: Professional experience in full-stack software development with a proven track record of shipping commercial software.\",\n\"Required: 1+ years hands-on experience building production-ready applications in C#, TypeScript, Python, or similar.\",\n\"Required: Strong problem-solving skills and ability to work collaboratively in an agile team environment.\",\n\"Required: Excellent written and verbal communication skills.\",\n\"Required: High-level understanding of AI Language Models, prompt engineering, and Agentic workflows.\",\n\"Required: Familiarity with CI/CD, automated testing, and modern DevOps practices.\",\n\"Preferred: Experience building and deploying scalable applications using modern AI technologies.\",\n\"Preferred: Proficient with relational databases, SQL, and data modeling.\",\n\"Preferred: Previous experience working with complex, data-intensive business applications.\"\n],\n\"entities\": {\n\"Company\": [\"Microsoft\"],\n\"Role\": [\"Software Engineer\", \"Individual Contributor\"],\n\"Location\": [\"India\", \"Karnataka\", \"Bangalore\"],\n\"Programming Languages\": [\"C#\", \"TypeScript\", \"Python\", \"SQL\"],\n\"Technologies/Frameworks\": [\".NET\", \"Azure\", \"Dynamics 365 Business Central\", \"Generative AI\", \"AI Language Models\", \"Prompt Engineering\", \"Agentic Workflows\", \"CI/CD\", \"Automated Testing\", \"DevOps\", \"Relational Databases\"],\n\"Skills\": [\"Full-stack software development\", \"Problem-solving\", \"Collaboration\", \"Communication\", \"Code reviews\", \"Test automation\", \"Performance monitoring\", \"Production issue resolution\", \"Data modeling\", \"Agile processes\"]\n},\n\"raw_text_preview\": \"Software Engineer for AI/Model-first Business Solutions \\nIndia, Karnataka, Bangalore \\nApply now \\nAdd to cart \\nFind out how well you match with this job \\nUpload your resume \\nJob description \\nCompany and benefits \\nJob number \\n200002552 \\nDate posted \\nFeb 19, 2026 \\nWork site \\n3 days / week in-office \\nTravel \\nLess than 25% \\nProfession \\nSoftware Engineering \\nDiscipline \\nSoftware Engineering \\nRole type \\nIndividual Contributor \\nEmployment type \\nFull-Time \\nOverview \\nThe Dynamics 365 Business Central team within Microsoft is dedicated to revolutionizing \\nbusiness operations with a suite of comprehensive agentic business solutions. As we \\nnavigate this era of digital and AI transformation, we focus on delivering agentic and \\nseamless experiences, empowering organizations with cutting-edge solutions.   As \\nSoftware Engineer within the Dynamics 365 Business Central team, you are actively \\ninvolved in developing and maintaining highly scalable world class business solutions that \\nincorporate the latest generative AI innovation.    Microsoft’s mission is to empower every \\nperson and every organization on the planet to achieve more. As employees we come \\ntogether with a growth mindset, innovate to empower others, and collaborate to realize our \\nshared goals. Each day we build on our values of respect, integrity, and accountability to \\ncreate a culture of inclusion where everyone can thrive at work and beyond. \\n \\nResponsibilities \\n \\n• Design, code, test and deploy robust, scalable, and high-performance AI/Model-first \\nfeatures for our business solutions using C#, .NET, Azure and modern AI \\ntechnologies \\n• Collaborate closely with product managers, UX researchers, AI researchers and \\nother engineers to translate complex business requirements into well-architected \\nsolutions \\n• Actively participate in the team’s agile processes, contributing to planning and \\ndesign sessions and sprint retrospectives. \\n• Enhance system quality by conducting code reviews, developing test automation \\nEvals to ensure features are accurate, reliable and maintainable. \\n• Contribute to the health of our live services by monitoring performance and online \\nevals metrics, investigating and resolving production issues, and participating in an \\non-call rotation. \\n \\n \\nQualifications \\n \\nRequired qualifications: - \\n• Bachelor\\'s degree in Computer Science, Engineering, or a related field, or \\nequivalent industry experience. \\n• Professional experience in full-stack software development, with a proven track \\nrecord of shipping commercial software. \\n• 1+years hands on experience building production ready applications a modern \\nprogramming language such as C#, TypeScript, Python or similar. \\n• Strong problem-solving skills and the ability to work collaboratively in an agile team \\nenvironment. \\n• Excellent written and verbal communication skills with the ability to clearly \\narticulate complex technical topics and discuss requirements with stakeholders. \\n• High level understanding of AI Language Models, prompt engineering, and Agentic \\nworkflows. \\n• Familiarity with CI/CD, automated testing, and modern DevOps practices. Preferred \\nQualifications: \\n• Experience building and deploying scalable applications using modern AI \\ntechnologies \\n• Proficient with relational databases, SQL and data modeling \\n• Previous experience working with complex, data-intensive business applications \\nAbility to meet Microsoft, customer and/or government security screening \\nrequirements are required for this role. \\n• These requirements include but are not limited to the following specialized security \\nscreenings: Microsoft Cloud Background Check: This position will be required to \\npass the Microsoft Cloud Background Check upon hire/transfer and every two years \\nthereafter. \\nMicrosoft is an equal opportunity employer. All qualified applicants will receive \\nconsideration for employment without regard to age, ancestry, color, family or medical care \\nleave, gender identity or expression, genetic information, marital status, medical condition, \\nnational origin, physical or mental disability, political affiliation, protected veteran status, \\nrace, religion, sex (including pregnancy), sexual orientation, or any other characteristic \\nprotected by applicable laws, regulations and ordinances. If you need assistance and/or a \\nreasonable accommodation due to a disability during the application or the recruiting \\nprocess, please send a request via the Accommodation request form.   \\nBenefits/perks listed below may vary depending on the nature of your employment with \\nMicrosoft and the country where you work. \\n \\n \\nThis position will be open for a minimum of 5 days, with applications accepted on an \\nongoing basis until the position is filled. \\n \\n \\n \\n \\nMicrosoft is an equal opportunity employer. All qualified applicants will receive \\nconsideration for employment without regard to age, ancestry, citizenship, color, family or \\nmedical care leave, gender identity or expression, genetic information, immigration status, \\nmarital status, medical condition, national origin, physical or mental disability, political \\naffiliation, protected veteran or military status, race, ethnicity, religion, sex (including \\npregnancy), sexual orientation, or any other characteristic protected by applicable local \\nlaws, regulations and ordinances. If you need assistance with religious accommodations \\nand/or a reasonable accommodation due to a disability during the application process, \\nread more about requesting accommodations. \\n \\n\"\n}\n```"
+  }
+}

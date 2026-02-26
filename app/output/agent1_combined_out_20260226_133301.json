@@ -1,0 +1,133 @@
+{
+  "doc_type": "combined_resume_and_jd",
+  "resume_data": {
+    "file_path": "documents/03_Test_Case_Resume.pdf",
+    "doc_type": "resume",
+    "summary": "Data Analyst with practical experience in Python, SQL, Excel, and Power BI, specializing in data preprocessing, analysis, and visualization. Possesses hands-on experience in dashboard creation, reporting, and version control using Git/GitHub. Professional experience includes a Technical Expert in Data Analyst role at Recruit Riders Technology, a Data Analytics and Visualization Job Simulation with Accenture, and a Data Science Internship at NULLCLASS. Holds a BE and Diploma in Computer Engineering from Gujarat Technological University.",
+    "key_points": [
+      "Data Analyst with practical experience in Python, SQL, Excel, and Power BI.",
+      "Specializes in data preprocessing, analysis, and visualization.",
+      "Experience in dashboard creation, reporting, and version control using Git/GitHub.",
+      "Analyzed recruitment and business data to generate actionable insights using Python, SQL, and Excel.",
+      "Cleaned, validated, and transformed large datasets to ensure data accuracy.",
+      "Created dashboards and MIS reports to track KPIs such as time-to-hire and recruiter performance.",
+      "Completed a hands-on job simulation covering real-world data analytics tasks with Accenture.",
+      "Assisted in developing a machine learning model for gender and age detection as a Data Science Intern at NullClass.",
+      "Technical skills include Python, R, SQL, NumPy, Pandas, Matplotlib, Scikit learn, Keras, TensorFlow, SQL Server, PostgreSQL, MySQL, MongoDB, Tableau, Power BI, Excel, Git, GitHub, Jira.",
+      "Education includes a BE in Computer Engineering and a Diploma in Computer Engineering from Gujarat Technological University."
+    ],
+    "entities": {
+      "name": [
+        "PATEL HET ASHISHKUMAR"
+      ],
+      "email": [
+        "hetp12005@gmail.com"
+      ],
+      "phone": [
+        "7359302173"
+      ],
+      "linkedin": [
+        "linkedin.com/in/het-patel-b70806245"
+      ],
+      "github": [
+        "github.com/Hetpatel2211"
+      ],
+      "companies": [
+        "Recruit Riders Technology",
+        "Accenture",
+        "NULLCLASS",
+        "Brainy Beam",
+        "Wadhwani Foundation",
+        "IIT BOMBAY",
+        "Neural class Academy",
+        "Gujarat Technological University"
+      ],
+      "roles": [
+        "Data Analyst",
+        "Technical Expert in Data Analyst",
+        "Data Science Intern",
+        "Web Design with React JS"
+      ],
+      "skills_tools": [
+        "Python",
+        "SQL",
+        "Excel",
+        "Power BI",
+        "Git",
+        "GitHub",
+        "NumPy",
+        "Pandas",
+        "Matplotlib",
+        "Scikit learn",
+        "Keras",
+        "TensorFlow",
+        "SQL Server",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Tableau",
+        "Power BI (Power Query, DAX)",
+        "Excel (Pivot Table, Pivot Chart, VLOOKUP, XLOOKUP, VBA)",
+        "Jira",
+        "R",
+        "Visual Studio Code",
+        "PyCharm",
+        "Jupyter Notebook",
+        "SDLC (Agile, Scrum)"
+      ],
+      "education": [
+        "BE in Computer Engineering",
+        "Diploma in Computer Engineering"
+      ]
+    },
+    "raw_text_preview": "PATEL HET ASHISHKUMAR\nData Analyst\nhetp12005@gmail.com\n \n7359302173\n \nMehsana, Gujarat\n \n2005/11/22\n \nlinkedin.com/in/het-patel-b70806245\n \ngithub.com/Hetpatel2211\n \nPROFESSIONAL SUMMARY\nData Analyst with practical experience in Python, SQL, Excel, and Power BI, specializing in data preprocessing, analysis, and visualization. \nHands-on exposure to real-world datasets through internships and simulations, with experience in dashboard creation, reporting, and version \ncontrol using Git/GitHub. Strong analytical mindset with the ability to translate data into actionable insights and collaborate effectively with \ncross-functional teams.\nPROFESSIONAL EXPERIENCE\nTechnical Expert in Data Analyst\nRecruit Riders Technology\n•Analyzed recruitment and business data to generate actionable insights using Python, SQL, and Excel.\n2025/02 – Present\nMehsana, Gujrat\n•Cleaned, validated, and transformed large datasets to ensure data accuracy and reporting reliability.\n•Created dashboards and MIS reports to track KPIs such as time-to-hire and recruiter performance.\n•Collaborated with cross-functional teams to convert business requirements into analytical reports.\nData Analytics and Visualization Job Simulation\nAccenture\n•Completed a hands-on job simulation covering real-world data analytics tasks.\n2024/12 – 2025/02\n•Gained experience in data storytelling and presenting insights to clients.\n•Worked with datasets to clean, model, and visualize data effectively.\nData Science Intern\nNULLCLASS\n•As an intern at NullClass, I assist in developing a machine learning model for gender and age detection\n2024/08\n•My role includes data preprocessing, model implementation, optimization, debugging code, and documenting \nprogress to enhance model accuracy and performance\nWeb Design with React JS\nBrainy Beam\n•Enhanced problem-solving and debugging abilities in a fast-paced environment.\n2023/06 – 2023/07\n•Collaborated with a team to implement user-friendly interfaces and optimize web performance.\n•Successfully completed all assigned tasks, demonstrating commitment, adaptability, and teamwork.\nTECHNICAL SKILLS\nMethodologies: SDLC(Agile, Scrum)\nProgramming Language & IDEs: Python,R,SQL; Visual Studio Code,PyCharm, Jupyter Notebook\nPython Packages: NumPy,Pandas,Matplotlib,Scikit learn,Keras,TensorFlow\nDatabase: SQL Server,PostgreSQL,MySQL,MongoDB\nVisualization Tools: Tableau, Power BI (Power Query,DAX), Excel (Pivot Table,Pivot Chart,VLOOKUP, XLOOKUP,VBA)\nOther Tools: Git,GitHub,Jira,Git Bash\nCOURSES\nEmployability Skills Program - Advanced\nWadhwani Foundation\n•Successfully completed an advanced program focused on workplace readiness skills.\n2024/01 – 2024/03\n•Developed soft skills essential for professional success\nGit Training\nIIT BOMBAY\n•Training focused on Git version control, including repository management, branching, merging, and \ncollaboration.\n2024/04\n•Gained hands-on experience in Git commands, commit history, resolving merge conflicts, and best practices.\nPython crash course\nNeural class Academy\n•Knowledge of basic Python syntax, data types, and functions\n•Experience with control flow statements (loops, conditionals)\n•Familiarity with data structures (lists, tuples, dictionaries)\nEDUCATION\nBE in Computer Engineering\nGujarat Technological University\n2024/07 – present\nDiploma in Computer Engineering\nGujarat Technological University\n8.81 CGPA\n2021 – 2024/07\nGUJARAT, India\n"
+  },
+  "jd_data": {
+    "file_path": "documents/03_Test_Case_JD.pdf",
+    "doc_type": "job_description",
+    "summary": "This document outlines a Software Engineering Intern position at Microsoft. The role involves working with teammates to solve problems, build innovative software solutions, and apply engineering principles. Interns will collaborate with global teams on real-world projects, learn new technologies, and contribute to next-generation software. Key responsibilities include determining user requirements, improving technical solutions, and demonstrating time management skills. Required qualifications include pursuing a Bachelor's or Master's degree in Computer Science or a related field, having at least one semester/term remaining after the internship, and one year of programming experience in an object-oriented language. Preferred qualifications include an understanding of computer science fundamentals, data structures, and algorithms.",
+    "key_points": [
+      "Software Engineering Intern position at Microsoft.",
+      "Focus on building innovative software solutions and applying engineering principles.",
+      "Collaboration with global teams on real-world projects.",
+      "Opportunity to learn new technologies and advance career.",
+      "Responsibilities include solving complex problems, determining user requirements, and improving technical solutions.",
+      "Required Qualifications: Bachelor’s or Master’s degree in Computer Science, Engineering, or related field; 1 semester/term remaining after internship; 1 year programming experience in an object-oriented language.",
+      "Preferred Qualifications: Understanding of computer science fundamentals, including data structures and algorithms."
+    ],
+    "entities": {
+      "Job Title": [
+        "Software Engineering INTERN"
+      ],
+      "Company": [
+        "Microsoft"
+      ],
+      "Locations": [
+        "India",
+        "Multiple Locations"
+      ],
+      "Employment Type": [
+        "Internship"
+      ],
+      "Profession": [
+        "Software Engineering"
+      ],
+      "Discipline": [
+        "Software Engineering"
+      ],
+      "Required Skills/Experience": [
+        "programming experience in an object-oriented language"
+      ],
+      "Preferred Skills/Experience": [
+        "computer science fundamentals",
+        "data structures",
+        "algorithms"
+      ],
+      "Education": [
+        "Bachelor’s degree in Computer Science, Engineering, or related field",
+        "Master’s degree in Computer Science, Engineering, or related field"
+      ]
+    },
+    "raw_text_preview": "Software Engineering INTERN \nIndia, Multiple Locations, Multiple Locations \nApply now \nAdd to cart \nJob description \nCompany and benefits \nJob number \n200027174 \nDate posted \nFeb 17, 2026 \nWork site \nFully on-site \nTravel \nLess than 25% \nProfession \nSoftware Engineering \nDiscipline \nSoftware Engineering \nRole type \nIndividual Contributor \nEmployment type \nInternship \nOverview \n \nCome build community, explore your passions and do your best work at Microsoft with \nthousands of University interns from every corner of the world. This opportunity will allow \nyou to bring your aspirations, talent, potential—and excitement for the journey ahead.   \nAs a Software Engineering Intern, you will work with teammates to solve problems and \nbuild innovative software solutions. You will apply your passion for customers and product \nquality as you provide technical guidance to Technical Program Managers and Product \nManagers. You will learn and adopt relevant new technologies, tools, methods, and \nprocesses to leverage in your solutions. This opportunity will enable you to advance your \ncareer by designing, developing, and testing next-generation software that will empower \nevery person and organization on the planet to achieve more. \n  \nAt Microsoft, Interns work on real-world projects in collaboration with teams across the \nworld, while having fun along the way. You’ll be empowered to build community, explore \nyour passions and achieve your goals. This is your chance to bring your solutions and ideas \nto life while working on cutting-edge technology. \n \n \nResponsibilities \n \n• Apply engineering principles to solve complex problems through sound and creative \nengineering.  \n• Work with appropriate stakeholders to determine user requirements for a feature. \n• Quickly learns new engineering methods and incorporates them into work \nprocesses.  \n• Seek feedback and apply internal or industry best practices to improve technical \nsolutions.  \n• Demonstrate skill in time management and completing software projects in a \ncooperative team environment. \n• Review current developments and proactively seek new knowledge that will improve \nthe availability, reliability, efficiency, observability, and performance of products \nwhile also driving consistency in monitoring and operations at scale. \n \n \nQualifications \n \nRequired Qualifications (RQs) \n \n• Currently pursuing Bachelor’s or Master’s degree in Computer Science, Engineering, \nor related field \n• Must have at least 1 semester/term remaining following the completion of the \ninternship \n• One year of programming experience in an object-oriented language \n  \nPreferred Qualifications (PQs) \n• Ability to demonstrate an understanding of computer science fundamentals, \nincluding data structures and algorithms \n \n \nThis position will be open for a minimum of 5 days, with applications accepted on an \nongoing basis until the position is filled. \n \n"
+  }
+}

@@ -22,30 +22,31 @@ from exa_py import Exa
 # =========================================================
 # Output Schema: Agent 2
 # =========================================================
-class NewsItem(BaseModel):
-    title: str = Field(..., description="News headline")
-    source: str = Field(..., description="Publisher/source name")
-    date: Optional[str] = Field(None, description="Publish date if available")
-    url: str = Field(..., description="Source URL")
-    summary: str = Field(..., description="1-2 line summary")
+from app.shared.schemas import CompanyResearchReport
+# class NewsItem(BaseModel):
+#     title: str = Field(..., description="News headline")
+#     source: str = Field(..., description="Publisher/source name")
+#     date: Optional[str] = Field(None, description="Publish date if available")
+#     url: str = Field(..., description="Source URL")
+#     summary: str = Field(..., description="1-2 line summary")
 
 
-class CompanyResearchReport(BaseModel):
-    company_name: str = Field(..., description="Company name")
-    role_title: Optional[str] = Field(None, description="Role title if available")
+# class CompanyResearchReport(BaseModel):
+#     company_name: str = Field(..., description="Company name")
+#     role_title: Optional[str] = Field(None, description="Role title if available")
 
-    overview: str = Field(..., description="What the company does in 2-4 lines")
-    mission_values: List[str] = Field(default_factory=list, description="Mission/values bullets")
-    products_services: List[str] = Field(default_factory=list, description="Key products/services")
-    business_model: List[str] = Field(default_factory=list, description="How they make money (high-level)")
+#     overview: str = Field(..., description="What the company does in 2-4 lines")
+#     mission_values: List[str] = Field(default_factory=list, description="Mission/values bullets")
+#     products_services: List[str] = Field(default_factory=list, description="Key products/services")
+#     business_model: List[str] = Field(default_factory=list, description="How they make money (high-level)")
 
-    interview_focus: List[str] = Field(default_factory=list, description="Likely interview focus areas")
-    interview_process: List[str] = Field(default_factory=list, description="Stages/rounds if found")
+#     interview_focus: List[str] = Field(default_factory=list, description="Likely interview focus areas")
+#     interview_process: List[str] = Field(default_factory=list, description="Stages/rounds if found")
 
-    recent_news: List[NewsItem] = Field(default_factory=list, description="Recent relevant news")
-    sources: List[str] = Field(default_factory=list, description="URLs used")
+#     recent_news: List[NewsItem] = Field(default_factory=list, description="Recent relevant news")
+#     sources: List[str] = Field(default_factory=list, description="URLs used")
 
-    notes: Optional[str] = Field(None, description="Caveats / missing info")
+#     notes: Optional[str] = Field(None, description="Caveats / missing info")
 
 
 # =========================================================

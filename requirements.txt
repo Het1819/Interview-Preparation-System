@@ -16,7 +16,9 @@ exa-py
 requests
 reportlab
 python-dotenv
-
+sqlalchemy 
+chromadb 
+sentence-transformers
 
 
 

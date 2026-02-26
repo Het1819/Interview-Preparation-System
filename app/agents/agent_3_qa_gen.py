@@ -41,6 +41,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 # ----------------------------
 # Output schema
 # ----------------------------
+
 class QAItem(BaseModel):
     round: str = Field(..., description="Which interview round this Q/A belongs to (must be one of provided rounds).")
     question: str = Field(..., description="Interview question.")

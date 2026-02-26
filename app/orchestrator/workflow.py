@@ -7,8 +7,11 @@ from app.agents.agent_1_parser import run_agent1
 from app.agents.agent_2_researcher import run_agent2
 from app.agents.agent_3_qa_gen import run_agent3
 from app.agents.agent_4_dispatcher import extract_candidate_contact, build_pdf, send_email_with_attachment
+from app.database.relational import init_db, save_candidate_run
+from app.database.vector_store import store_document_in_vector_db
 
 def main():
+    init_db()
     parser = argparse.ArgumentParser(description="End-to-End Interview Preparation Workflow Orchestrator")
     parser.add_argument("--resume_path", type=str, required=True, help="Path to the candidate's Resume")
     parser.add_argument("--jd_path", type=str, required=True, help="Path to the Job Description document")
@@ -51,6 +54,14 @@ def main():
         json.dump(combined_agent1_out, f, indent=2, ensure_ascii=False)
     print(f"Agent 1 combined output saved to {agent1_out_path}")
 
+    resume_text = resume_out.get("raw_text_preview", "")
+    jd_text = jd_out.get("raw_text_preview", "")
+    candidate_id = timestamp # using timestamp as a unique ID for this run
+
+    if resume_text:
+        store_document_in_vector_db(doc_id=f"res_{timestamp}", text=resume_text, doc_type="resume", candidate_id=candidate_id)
+    if jd_text:
+        store_document_in_vector_db(doc_id=f"jd_{timestamp}", text=jd_text, doc_type="job_description", candidate_id=candidate_id)
     # ---------------------------------------------------------
     # 2. Agent 2: Company Researcher
     # ---------------------------------------------------------
@@ -132,7 +143,15 @@ def main():
                     print(f"Failed to send email: {e}")
 
     print("\n--- Workflow Completed Successfully! ---")
-
+    save_candidate_run(
+    name=candidate_name,
+    email=recipient,
+    company=agent2_out.get("company_name", args.company),
+    role=agent2_out.get("role_title", args.role),
+    resume_path=args.resume_path,
+    jd_path=args.jd_path,
+    pdf_path=pdf_path
+    )
 if __name__ == "__main__":
     main()
 
@@ -152,3 +171,6 @@ if __name__ == "__main__":
 #   --to_email "candidate@example.com"
 
 
+
+# python -m app.orchestrator.workflow --resume_path "documents/03_Test_Case_Resume.pdf" --jd_path "documents/03_Test_Case_JD.pdf" --interview_rounds "Round 2 - Technical Round" --send_email --to_email "phet6011@gmail.com"
+# python -m app.orchestrator.workflow --resume_path "documents/Het/02_Test_Case_Resume.pdf" --jd_path "documents/Het/JD.pdf" --interview_rounds "Round 1 - Recruiter Screen" --company "Microsoft" --role "Software Engineering" --send_email

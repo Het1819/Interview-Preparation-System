@@ -1,0 +1,81 @@
+{
+  "company_name": "Microsoft",
+  "role_title": "Software Engineering",
+  "overview": "Microsoft Corporation is a global technology company that develops, manufactures, licenses, supports, and sells computer software, consumer electronics, personal computers, and related services. It is known for its Windows operating systems, Office suite, Azure cloud services, and Xbox gaming consoles. The company is deeply invested in artificial intelligence, cloud computing, and empowering individuals and organizations worldwide.",
+  "mission_values": [
+    "Mission: To empower every person and every organization on the planet to achieve more.",
+    "Values: Innovation, Diversity and Inclusion, expanding opportunity, and creating a future that benefits everyone."
+  ],
+  "products_services": [
+    "Operating Systems: Windows",
+    "Productivity & Business Applications: Microsoft 365 (Word, Excel, PowerPoint, Outlook, Teams, OneDrive), Dynamics 365, LinkedIn",
+    "Cloud Services: Microsoft Azure",
+    "Gaming: Xbox consoles and services, Activision Blizzard titles",
+    "Devices: Surface line of PCs and tablets",
+    "Artificial Intelligence: Copilot, AI research and development"
+  ],
+  "business_model": [
+    "Diversified revenue streams across three main segments: Productivity and Business Processes, Intelligent Cloud, and More Personal Computing.",
+    "Significant revenue generated from cloud services (Azure, Microsoft 365), software licenses, subscription services, gaming, and hardware sales.",
+    "Strong emphasis on recurring revenue through subscriptions and cloud-based solutions."
+  ],
+  "interview_focus": [
+    "Technical skills: Data structures, algorithms, problem-solving, system design.",
+    "Behavioral skills: Cultural alignment, growth mindset, collaboration, leadership principles.",
+    "Coding challenges: Often involve platforms like Codility.",
+    "Problem-solving: Ability to break down complex problems and articulate solutions clearly."
+  ],
+  "interview_process": [
+    "Typically starts with an online application.",
+    "Followed by an online coding assessment or phone screen.",
+    "Multiple rounds of interviews, which may include technical (coding, system design) and behavioral questions.",
+    "The process is rigorous, with a low acceptance rate for internships and graduate roles (1-2%)."
+  ],
+  "recent_news": [
+    {
+      "title": "Celebrating 250 million: Empowering communities to enable the global AI economy",
+      "source": "Microsoft On the Issues blog",
+      "date": "2026-02-24",
+      "url": "https://blogs.microsoft.com/on-the-issues/2026/02/24/empowering-communities-to-enable-the-global-ai-economy/",
+      "summary": "Microsoft reached its goal of expanding internet access to 250 million people by 2025, highlighting its commitment to digital access and the global AI economy."
+    },
+    {
+      "title": "Microsoft pledges $50 billion to tackle AI inequality as it warns of a ‘growing divide’",
+      "source": "CNN Business",
+      "date": "2026-02-18",
+      "url": "http://www.cnn.com/2026/02/18/business/ai-impact-summit-microsoft-inequality-investment",
+      "summary": "Microsoft announced a $50 billion investment to address AI inequality, emphasizing the need to ensure AI benefits everyone and prevent a widening digital divide."
+    },
+    {
+      "title": "More big updates today for our Phi family of SLMs: Phi-4 multimodal and Phi-4 mini.",
+      "source": "Microsoft News",
+      "date": "2025-02-26",
+      "url": "https://news.microsoft.com/category/recent-news/",
+      "summary": "Microsoft continues to advance its AI research, releasing updates to its Phi family of Small Language Models (SLMs), including multimodal and mini versions, making AI breakthroughs available to developers."
+    },
+    {
+      "title": "Microsoft Research Details 10,000-Year Data Storage Breakthrough In Nature",
+      "source": "Quantum Zeitgeist",
+      "date": "2026-02-23",
+      "url": "https://quantumzeitgeist.com/microsoft-research-glass-storage-data/",
+      "summary": "Microsoft Research achieved a breakthrough in long-term data storage, developing a method that could preserve information for 10,000 years using glass-based technology."
+    }
+  ],
+  "sources": [
+    "https://microsoft.com/about",
+    "https://www.microsoft.com/en-pk/about/values",
+    "https://www.microsoft.com/en-ca/microsoft-products-and-apps",
+    "https://www.microsoft.com/en-us/microsoft-365/products-apps-services",
+    "https://www.visualcapitalist.com/how-microsoft-makes-its-billions/",
+    "https://www.dawgen.global/from-cloud-to-clients-strategic-lessons-from-microsofts-245b-revenue-engine-analyzing-the-rise-of-cloud-services-and-how-your-business-can-harness-the-same-momentum/",
+    "https://medium.com/%40kartheek23404/how-microsoft-makes-money-4bebc3daa121",
+    "https://blogs.microsoft.com/on-the-issues/2026/02/24/empowering-communities-to-enable-the-global-ai-economy/",
+    "http://www.cnn.com/2026/02/18/business/ai-impact-summit-microsoft-inequality-investment",
+    "https://www.theverge.com/tech/883015/microsoft-xbox-new-ceo-shakeup-notepad",
+    "https://news.microsoft.com/category/recent-news/",
+    "https://quantumzeitgeist.com/microsoft-research-glass-storage-data/",
+    "https://jobright.ai/blog/the-ultimate-microsoft-interview-guide-2026-from-process-breakdown-to-securing-the-offer/",
+    "https://testlify.com/how-microsoft-hires-tech-talent/"
+  ],
+  "notes": null
+}
