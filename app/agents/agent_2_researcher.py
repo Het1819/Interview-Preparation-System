@@ -404,7 +404,7 @@ def main():
 
     out = run_agent2(agent1_data, company_override=args.company, role_override=args.role)
     print(json.dumps(out, indent=2, ensure_ascii=False))
-    with open("app/output/03_Test_Case_agent_2_OP_JD.json","w", encoding="utf-8") as f:
+    with open("app/output/01_Test_Case_agent_2_OP_JD.json","w", encoding="utf-8") as f:
         json.dump(out,f,indent=2,ensure_ascii=False)
 
 if __name__ == "__main__":

@@ -296,15 +296,15 @@ def run_agent1(file_path: str) -> Dict[str, Any]:
 # CLI test
 # ----------------------------
 if __name__ == "__main__":
-    test_path_01 = r"D:\End to end Job Description and Resume Analyser\interview-prep-system\documents\03_Test_Case_Resume.pdf"
-    test_path_02 = r"D:\End to end Job Description and Resume Analyser\interview-prep-system\documents\03_Test_Case_JD.pdf"
+    test_path_01 = r"D:\End to end Job Description and Resume Analyser\interview-prep-system\documents\01_Resume.pdf"
+    test_path_02 = r"D:\End to end Job Description and Resume Analyser\interview-prep-system\documents\01_JD.pdf"
     out1 = run_agent1(test_path_01)
     out2 = run_agent1(test_path_02)
     print(json.dumps(out1, indent=2, ensure_ascii=False))
     print(json.dumps(out2, indent=2, ensure_ascii=False))
-    with open("app/output/03_Test_Case_agent_1_OP_Resume.json", "w", encoding="utf-8") as f:
+    with open("app/output/01_Agent_1_OP_Resume.json", "w", encoding="utf-8") as f:
         json.dump(out1, f, indent=2, ensure_ascii=False)
-    with open("app/output/03_Test_Case_agent_1_OP_JD.json", "w", encoding="utf-8") as f:
+    with open("app/output/02_Agent_1_OP_JD.json", "w", encoding="utf-8") as f:
         json.dump(out2, f, indent=2, ensure_ascii=False)
 
 
