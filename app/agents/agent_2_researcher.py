@@ -277,7 +277,8 @@ def guess_company_and_role(agent1: Dict[str, Any]) -> Dict[str, Optional[str]]:
 # =========================================================
 # Build Agent 2
 # =========================================================
-def build_agent2(model_name: str = "gemini-2.5-flash", temperature: float = 0.2):
+def build_agent2(model_name: str = "gemini-2.5-flash-lite", temperature: float = 0.2):
+# def build_agent2(model_name: str = "gemini-2.5-flash", temperature: float = 0.2):
     llm = ChatGoogleGenerativeAI(
         model=model_name,
         temperature=temperature,

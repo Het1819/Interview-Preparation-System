@@ -57,7 +57,7 @@ def load_file_with_smartloader(file_path: str) -> str:
 # ----------------------------
 # Multimodal extractor for scanned PDFs/images
 # ----------------------------
-def gemini_multimodal_extract_text(part: genai_types.Part, model: str = "gemini-2.5-flash") -> str:
+def gemini_multimodal_extract_text(part: genai_types.Part, model: str = "gemini-2.5-flash-lite") -> str:
     api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
         raise EnvironmentError("Missing GOOGLE_API_KEY in environment variables.")
@@ -174,7 +174,8 @@ def extract_json_object(text: str) -> Optional[Dict[str, Any]]:
 # Build Agent 1 using create_agent
 # ----------------------------
 def build_agent1(
-    model_name: str = "gemini-2.5-flash",
+    model_name: str = "gemini-2.5-flash-lite",
+    # model_name: str = "gemini-2.5-flash",
     temperature: float = 0.2,
 ):
     llm = ChatGoogleGenerativeAI(

@@ -16,6 +16,12 @@ def main():
     parser.add_argument("--resume_path", type=str, required=True, help="Path to the candidate's Resume")
     parser.add_argument("--jd_path", type=str, required=True, help="Path to the Job Description document")
     parser.add_argument("--interview_rounds", type=str, required=True, help="Interview rounds (separate by ';' or ',')")
+    parser.add_argument(
+        "--answer_length",
+        default="answer_medium",
+        choices=["answer_small", "answer_medium", "answer_large"],
+        help="Choose which answer version should be copied into the main `answer` field"
+    )
     parser.add_argument("--company", type=str, default=None, help="Company override (if JD doesn't state it)")
     parser.add_argument("--role", type=str, default=None, help="Role override")
     parser.add_argument("--out_dir", type=str, default="app/output", help="Directory to save intermediate JSONs and PDF")
@@ -84,7 +90,8 @@ def main():
         agent2_data=agent2_out,
         agent1_path=agent1_out_path,
         agent2_path=agent2_out_path,
-        interview_rounds=args.interview_rounds
+        interview_rounds=args.interview_rounds,
+        answer_length=args.answer_length
     )
     
     agent3_out_path = os.path.join(args.out_dir, f"agent3_out_{timestamp}.json")
@@ -172,5 +179,7 @@ if __name__ == "__main__":
 
 
 
-# python -m app.orchestrator.workflow --resume_path "documents/03_Test_Case_Resume.pdf" --jd_path "documents/03_Test_Case_JD.pdf" --interview_rounds "Round 2 - Technical Round" --send_email --to_email "phet6011@gmail.com"
-# python -m app.orchestrator.workflow --resume_path "documents/Het/02_Test_Case_Resume.pdf" --jd_path "documents/Het/JD.pdf" --interview_rounds "Round 1 - Recruiter Screen" --company "Microsoft" --role "Software Engineering" --send_email
+# python -m app.orchestrator.workflow --resume_path "documents/03_Test_Case_Resume.pdf" --jd_path "documents/03_Test_Case_JD.pdf" --interview_rounds "Round 2 - Technical Round" --answer_length "answer_small" --send_email --to_email "phet6011@gmail.com"
+# python -m app.orchestrator.workflow --resume_path "documents/Het/02_Test_Case_Resume.pdf" --jd_path "documents/Het/JD.pdf" --interview_rounds "Round 1 - Recruiter Screen" --answer_length "answer_small" --company "Microsoft" --role "Software Engineering" --send_email
+
+# python -m app.orchestrator.workflow -- resume_path "documents/02_Test_Case_Resume_02.pdf" --jd_path "documents/JD For AIS.docx" --interview_round "Round 2 - Technical Round" --answer_length "answer_long" --company "AIS" --role "AI Automation Expert Job Summary" --send_email 
