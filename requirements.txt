@@ -19,7 +19,9 @@ python-dotenv
 sqlalchemy 
 chromadb 
 sentence-transformers
-
-
+fastapi
+uvicorn[standard]
+python-multipart
+python-dotenv
 
 # -e .
