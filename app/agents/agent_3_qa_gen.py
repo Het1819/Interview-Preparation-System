@@ -34,6 +34,7 @@ from pydantic import BaseModel, Field
 
 from langchain.agents import create_agent
 from langchain_google_genai import ChatGoogleGenerativeAI
+import time
 
 
 # ----------------------------
@@ -43,12 +44,19 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 class QAItem(BaseModel):
     round: str = Field(..., description="Which interview round this Q/A belongs to.")
     question: str = Field(..., description="Interview question.")
-    answer: str = Field(..., description="Main answer chosen based on --answer_length.")
-    answer_small: str = Field(..., description="Small answer in point form.")
-    answer_medium: str = Field(..., description="Medium answer in point form.")
-    answer_large: str = Field(..., description="Large answer in point form.")
+    answer: str = Field(..., description="Interview answer generated based on selected --answer_length.")
     focus_area: str = Field(..., description="Skill/area assessed.")
     difficulty: str = Field(..., description="easy | medium | hard")
+    
+# class QAItem(BaseModel):
+#     round: str = Field(..., description="Which interview round this Q/A belongs to.")
+#     question: str = Field(..., description="Interview question.")
+#     answer: str = Field(..., description="Main answer chosen based on --answer_length.")
+#     answer_small: str = Field(..., description="Small answer in point form.")
+#     answer_medium: str = Field(..., description="Medium answer in point form.")
+#     answer_large: str = Field(..., description="Large answer in point form.")
+#     focus_area: str = Field(..., description="Skill/area assessed.")
+#     difficulty: str = Field(..., description="easy | medium | hard")
 
 
 class Agent3QAOutput(BaseModel):
@@ -156,67 +164,67 @@ def _to_bullets(text: str, max_items: Optional[int] = None) -> str:
     return "\n".join(f"- {p}" for p in parts if p)
 
 
-def _make_small_answer(source_text: str) -> str:
-    bullets = _to_bullets(source_text, max_items=3)
-    return bullets or "- I would answer this briefly based on the experience and tools reflected in my resume."
+# def _make_small_answer(source_text: str) -> str:
+#     bullets = _to_bullets(source_text, max_items=3)
+#     return bullets or "- I would answer this briefly based on the experience and tools reflected in my resume."
 
 
-def _make_medium_answer(source_text: str) -> str:
-    bullets = _to_bullets(source_text, max_items=5)
-    return bullets or "- I would answer this with balanced depth tied to my experience, approach, and impact."
+# def _make_medium_answer(source_text: str) -> str:
+#     bullets = _to_bullets(source_text, max_items=5)
+#     return bullets or "- I would answer this with balanced depth tied to my experience, approach, and impact."
 
 
-def _make_large_answer(source_text: str) -> str:
-    bullets = _to_bullets(source_text, max_items=8)
-    return bullets or "- I would answer this in more depth by covering the problem, approach, technical choices, validation, and outcome."
+# def _make_large_answer(source_text: str) -> str:
+#     bullets = _to_bullets(source_text, max_items=8)
+#     return bullets or "- I would answer this in more depth by covering the problem, approach, technical choices, validation, and outcome."
 
 
-def normalize_qa_item(item: Dict[str, Any], answer_length: str = "answer_medium") -> Dict[str, Any]:
-    if not isinstance(item, dict):
-        item = {}
+# def normalize_qa_item(item: Dict[str, Any], answer_length: str = "answer_medium") -> Dict[str, Any]:
+#     if not isinstance(item, dict):
+#         item = {}
 
-    base_answer = str(item.get("answer", "")).strip()
-    answer_small = str(item.get("answer_small") or "").strip()
-    answer_medium = str(item.get("answer_medium") or "").strip()
-    answer_large = str(item.get("answer_large") or "").strip()
+#     base_answer = str(item.get("answer", "")).strip()
+#     answer_small = str(item.get("answer_small") or "").strip()
+#     answer_medium = str(item.get("answer_medium") or "").strip()
+#     answer_large = str(item.get("answer_large") or "").strip()
 
-    seed_text = answer_large or answer_medium or base_answer or answer_small
+#     seed_text = answer_large or answer_medium or base_answer or answer_small
 
-    if not answer_small:
-        answer_small = _make_small_answer(seed_text)
-    else:
-        answer_small = _make_small_answer(answer_small)
+#     if not answer_small:
+#         answer_small = _make_small_answer(seed_text)
+#     else:
+#         answer_small = _make_small_answer(answer_small)
 
-    if not answer_medium:
-        answer_medium = _make_medium_answer(seed_text)
-    else:
-        answer_medium = _make_medium_answer(answer_medium)
+#     if not answer_medium:
+#         answer_medium = _make_medium_answer(seed_text)
+#     else:
+#         answer_medium = _make_medium_answer(answer_medium)
 
-    if not answer_large:
-        answer_large = _make_large_answer(seed_text or answer_medium)
-    else:
-        answer_large = _make_large_answer(answer_large)
+#     if not answer_large:
+#         answer_large = _make_large_answer(seed_text or answer_medium)
+#     else:
+#         answer_large = _make_large_answer(answer_large)
 
-    item["answer_small"] = answer_small
-    item["answer_medium"] = answer_medium
-    item["answer_large"] = answer_large
+#     item["answer_small"] = answer_small
+#     item["answer_medium"] = answer_medium
+#     item["answer_large"] = answer_large
 
-    if answer_length == "answer_small":
-        item["answer"] = answer_small
-    elif answer_length == "answer_large":
-        item["answer"] = answer_large
-    else:
-        item["answer"] = answer_medium
+#     if answer_length == "answer_small":
+#         item["answer"] = answer_small
+#     elif answer_length == "answer_large":
+#         item["answer"] = answer_large
+#     else:
+#         item["answer"] = answer_medium
 
-    item["round"] = str(item.get("round", "")).strip()
-    item["question"] = str(item.get("question", "")).strip()
-    item["focus_area"] = str(item.get("focus_area", "")).strip()
-    item["difficulty"] = str(item.get("difficulty", "medium")).strip().lower() or "medium"
+#     item["round"] = str(item.get("round", "")).strip()
+#     item["question"] = str(item.get("question", "")).strip()
+#     item["focus_area"] = str(item.get("focus_area", "")).strip()
+#     item["difficulty"] = str(item.get("difficulty", "medium")).strip().lower() or "medium"
 
-    if item["difficulty"] not in {"easy", "medium", "hard"}:
-        item["difficulty"] = "medium"
+#     if item["difficulty"] not in {"easy", "medium", "hard"}:
+#         item["difficulty"] = "medium"
 
-    return item
+#     return item
 
 
 # ----------------------------
@@ -237,6 +245,8 @@ def build_agent3(
         model=model_name,
         temperature=temperature,
         google_api_key=api_key,
+        timeout=180,
+        max_retries=2,
     )
 
     system_prompt = """
@@ -255,24 +265,37 @@ Output requirements:
 A) "top_30": exactly 30 items. Each item must include:
 - round
 - question
-- answer_small
-- answer_medium
-- answer_large
 - answer
 - focus_area
 - difficulty
+# - answer_small
+# - answer_medium
+# - answer_large
 
 Answer style rules:
 - All three answers must be in point form using short bullet lines inside the JSON string.
-- answer_small:
-  - Crisp screening answer
-  - Usually 2 to 3 bullets
-- answer_medium:
-  - Balanced interview answer
-  - Usually 4 to 6 bullets
-- answer_large:
-  - Deep answer with richer technical depth or story detail
-  - Usually 6 to 9 bullets
+Answer style rules based on answer_length:
+- If answer_length = "answer_small":
+  - Give a crisp screening-style answer
+  - Usually 3 to 4 short bullet points
+- If answer_length = "answer_medium":
+  - Give a balanced interview answer
+  - Usually 4 to 7 short bullet points
+- If answer_length = "answer_large":
+  - Give a deeper answer with more technical depth or story detail
+  - Usually 6 to 10 short bullet points
+
+# - answer_small:
+#   - Crisp screening answer
+#   - Usually 3 to 4 bullets
+# - answer_medium:
+#   - Balanced interview answer
+#   - Usually 4 to 7 bullets
+# - answer_large:
+#   - Deep answer with richer technical depth or story detail
+#   - Usually 6 to 10 bullets
+
+
 - If the question is experience-based:
   - answer using a story shape: problem, action, technical depth, impact
 - If the question is scenario-based:
@@ -288,6 +311,7 @@ C) All Q/A must be based on:
 - Candidate/resume content from Agent 1
 - Research/context from Agent 2
 - Interview rounds specified by user
+- Questions should be different from previously provided 
 
 Constraints:
 - If Agent 2 lacks company specifics, keep questions role-based and skill-based.
@@ -309,9 +333,9 @@ JSON schema:
       "round": "string",
       "question": "string",
       "answer": "string",
-      "answer_small": "string",
-      "answer_medium": "string",
-      "answer_large": "string",
+    #   "answer_small": "string",
+    #   "answer_medium": "string",
+    #   "answer_large": "string",
       "focus_area": "string",
       "difficulty": "easy|medium|hard"
     }
@@ -332,10 +356,10 @@ JSON schema:
 # ----------------------------
 # Core runner
 # ----------------------------
-import re
-import json
-import asyncio
-from typing import Dict, Any
+# import re
+# import json
+# import asyncio
+# from typing import Dict, Any
 
 def run_agent3(
     agent1_data: Dict[str, Any],
@@ -362,22 +386,36 @@ def run_agent3(
         "agent2_file": agent2_path,
         "answer_length": answer_length,
     }
+    max_attempts = 3
+    initial_delay = 1
+    exp_base = 2
 
-    result = agent.invoke(
-        {
-            "messages": [
+    last_error = None
+    result = None
+    
+    for attempt in range(max_attempts):
+        try:
+            result = agent.invoke(
                 {
-                    "role": "user",
-                    "content": (
-                        "Generate Q&A now using the following JSON inputs.\n"
-                        "Return ONLY valid JSON.\n\n"
-                        + json.dumps(user_payload, ensure_ascii=False)
-                    ),
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": (
+                                "Generate Q&A now using the following JSON inputs.\n"
+                                "Return ONLY valid JSON.\n\n"
+                                + json.dumps(user_payload, ensure_ascii=False)
+                            ),
+                        }
+                    ]
                 }
-            ]
-        }
-    )
-
+            )
+            break
+        except Exception as e:
+                last_error = str(e)
+                if attempt == max_attempts - 1:
+                    return {"error": f"Agent invocation failed after retries: {last_error}"}
+                delay = initial_delay * (exp_base ** attempt)
+                time.sleep(delay)
     text = _get_last_ai_content(result).strip()
     data = extract_json_object(text)
 
@@ -402,10 +440,43 @@ def run_agent3(
             )
 
         if isinstance(data.get("top_30"), list):
-            normalized_items = []
+            cleaned_items = []
             for item in data["top_30"]:
-                normalized_items.append(normalize_qa_item(item, answer_length=answer_length))
-            data["top_30"] = normalized_items
+                if not isinstance(item, dict):
+                    item = {}
+
+                cleaned_item = {
+                    "round": str(item.get("round", "")).strip(),
+                    "question": str(item.get("question", "")).strip(),
+                    "answer": str(item.get("answer", "")).strip(),
+                    "focus_area": str(item.get("focus_area", "")).strip(),
+                    "difficulty": str(item.get("difficulty", "medium")).strip().lower() or "medium",
+                }
+
+                if cleaned_item["difficulty"] not in {"easy", "medium", "hard"}:
+                    cleaned_item["difficulty"] = "medium"
+
+                if not cleaned_item["answer"]:
+                    cleaned_item["answer"] = "- I would answer this based on my resume-aligned experience and approach."
+
+                cleaned_items.append(cleaned_item)
+
+            data["top_30"] = cleaned_items
+
+        # top_30 = data.get("top_30", [])
+        # if isinstance(top_30, list) and len(top_30) > 30:
+        #     data["top_30"] = top_30[:30]
+        # elif isinstance(top_30, list) and len(top_30) < 30:
+        #     data.setdefault("notes", [])
+        #     data["notes"].append(
+        #         f"Model returned {len(top_30)} items in top_30 (expected 30)."
+        #     )
+
+        # if isinstance(data.get("top_30"), list):
+        #     normalized_items = []
+        #     for item in data["top_30"]:
+        #         normalized_items.append(normalize_qa_item(item, answer_length=answer_length))
+        #     data["top_30"] = normalized_items
 
         top_20 = data.get("top_20_questions", [])
         if isinstance(top_20, list) and len(top_20) > 20:

@@ -1,0 +1,4 @@
+{
+  "error": "Failed to parse JSON from agent output.",
+  "raw_output": "I am sorry, I cannot fulfill this request. The available tools have exceeded their usage limits. Please check your plan and billing details."
+}

@@ -1,0 +1,82 @@
+{
+  "doc_type": "combined_resume_and_jd",
+  "resume_data": {
+    "file_path": "D:\\End to end Job Description and Resume Analyser\\interview-prep-system\\app\\output\\uploads\\resume_20260401_114703.pdf",
+    "doc_type": "resume",
+    "summary": "Aspiring AI Engineer with a strong foundation in Python, SQL, and machine learning libraries like TensorFlow and Scikit-learn. Experienced in designing multi-agent workflows and deploying applications with Docker. Seeking to solve real-world problems using data-driven solutions. Possesses professional experience as a Technical Expert at Recruit Riders Technologies and internships at Space-O Technology (Machine Learning Intern) and FusionBit (Data Science Intern). Key projects include a Healthcare Helper agent, Spotify Preference Modelling, and a Face Recognition Attendance System. Holds a B.E. in Information Technology from Gujarat Technological University.",
+    "key_points": [
+      "Skilled in Python, SQL, Machine Learning, Multi-Agent Systems, LLMs, NLP, Computer Vision, TensorFlow, Scikit-learn, Docker, Git, CI/CD, Flask, Streamlit, FastAPI, Data Preprocessing, Feature Engineering, Pandas, NumPy, Tableau.",
+      "Developed Customer Churn Prediction models using TensorFlow, achieving a 15% reduction in false positives.",
+      "Refactored training workflows with vectorised NumPy operations, resulting in a 20% acceleration in model training speed.",
+      "Designed automated data cleaning and normalisation pipelines for raw client data.",
+      "Conducted statistical analysis on user behaviour datasets to identify key churn indicators.",
+      "Built a medical analysis agent using Google Gemini and Flask with 95% extraction accuracy on OCR.",
+      "Engineered a content-based recommendation engine using K-Means clustering and PCA.",
+      "Developed a real-time attendance automation system using Python and OpenCV."
+    ],
+    "entities": {
+      "group": [
+        "HET PATEL",
+        "Ahmedabad",
+        "Recruit Riders Technologies",
+        "Mahesana",
+        "Space-O Technology",
+        "Ahmedabad",
+        "FusionBit",
+        "Ahmedabad",
+        "Gujarat Technological University"
+      ]
+    },
+    "raw_text_preview": "HET PATEL \n \nAhmedabad, India | +91 9725647609 | phet4311@gmail.com | LinkedIn | GitHub \nPROFESSIONAL SUMMARY \nAspiring AI Engineer with an interest in Generative AI and Predictive Analytics. Skilled in \nPython, SQL, and various machine learning libraries, including  TensorFlow and Scikit-learn. \nExperienced in designing multi-agent workflows and deploying basic applications with Docker \nand interested in solving real-world problems with data-driven solutions. \nTECHNICAL SKILLS \nPython, SQL, Machine Learning, Multi -Agent Systems, LLMs, NLP , Computer Vision, \nTensorFlow, Scikit-learn, Docker, Git, CI/CD, Flask, Streamlit, FastAPI, Data Preprocessing, \nFeature Engineering, Pandas, NumPy, Tableau \nPROFESSIONAL EXPERIENCE \nRecruit Riders Technologies | Technical Expert Mahesana | Dec 2025 – Present \n• Provided technical support for AI and Machine Learning development using Python. \n• Assisted in code optimisation and debugging to ensure smooth software performance. \nSpace-O Technology | Machine Learning Intern Ahmedabad | Aug 2024 – Feb 2025 \n• Developed Customer Churn Prediction models using TensorFlow, achieving a 15% \nreduction in false positives through hyperparameter optimisation (Grid Search). \n• Refactored training workflows with vectorised NumPy operations, resulting in a 20% \nacceleration in model training speed for large-scale datasets. \nFusionBit | Data Science Intern Ahmedabad | Jan 2024 – Apr 2024 \n• Designed automated data cleaning and normalisation pipelines for raw client data to \nensure high-quality input features. \n• Conducted statistical analysis on user behaviour datasets to identify key churn \nindicators, directly influencing feature selection for production models. \nPROJECTS \nHealthcare Helper (Medical Analysis Agent): Built a medical analysis agent using Google  \nGemini and Flask to extract clinical data from prescription images and achieved 95% \nextraction accuracy on OCR.  \nSpotify Preference Modelling : Analysed 85,000+ tracks to engineer a content -based \nrecommendation engine using K-Means clustering and PCA for dimensionality reduction. \nFace Recognition Attendance System : Developed a real -time attendance automation \nsystem using Python and OpenCV to streamline user identification processes. \nEDUCATION \nB.E. Information Technology | Gujarat Technological University | CGPA: 8.23  \nGraduated: 2024  \n \n"
+  },
+  "jd_data": {
+    "file_path": "D:\\End to end Job Description and Resume Analyser\\interview-prep-system\\app\\output\\uploads\\jd_20260401_114703.docx",
+    "doc_type": "job_description",
+    "summary": "This document is a job description for an AI Automation Expert at AIS Technolabs PVT LTD. The role involves designing, developing, and deploying AI-driven automation solutions to improve operational efficiency. Key responsibilities include developing and training machine learning models, integrating AI tools with existing systems, automating workflows, analyzing data, and collaborating with cross-functional teams. The required qualifications include a relevant degree, 1-3 years of experience in AI/automation, experience with ML frameworks and automation tools, knowledge of APIs and integrations, familiarity with LLMs and AI tools, and experience with cloud platforms. Preferred qualifications include experience with Generative AI, NLP, vector databases, chatbots, and DevOps.",
+    "key_points": [
+      "Design and implement AI-driven automation solutions.",
+      "Develop, train, and deploy machine learning models.",
+      "Integrate AI tools with existing systems (CRM, ERP, APIs, databases).",
+      "Automate repetitive workflows using RPA and AI technologies.",
+      "Analyze large datasets to identify automation opportunities and insights.",
+      "Collaborate with cross-functional teams.",
+      "Monitor and optimize AI models and automation pipelines.",
+      "Ensure compliance with data privacy and security standards.",
+      "Stay updated with the latest advancements in AI and automation.",
+      "Bachelor’s/Master’s degree in Computer Science, Data Science, AI, or related field.",
+      "1–3+ years of experience in AI, automation, or related roles.",
+      "Experience with ML frameworks (TensorFlow, PyTorch, Scikit-learn).",
+      "Hands-on experience with automation tools (n8n, Zapier, Make).",
+      "Knowledge of APIs, webhooks, and system integrations.",
+      "Familiarity with LLMs, prompt engineering, and AI tools (e.g., OpenAI, Claude).",
+      "Experience with cloud platforms (AWS, Azure, or GCP).",
+      "Strong problem-solving and analytical thinking.",
+      "Experience with Generative AI and NLP applications (preferred).",
+      "Knowledge of vector databases and embeddings (preferred).",
+      "Experience building chatbots or AI assistants (preferred).",
+      "Familiarity with DevOps (preferred)."
+    ],
+    "entities": {
+      "group": [
+        "AIS Technolabs PVT LTD",
+        "AI Automation Expert",
+        "CRM",
+        "ERP",
+        "APIs",
+        "TensorFlow",
+        "PyTorch",
+        "Scikit-learn",
+        "n8n",
+        "Zapier",
+        "Make",
+        "OpenAI",
+        "Claude",
+        "AWS",
+        "Azure",
+        "GCP",
+        "DevOps"
+      ]
+    },
+    "raw_text_preview": "About Company:-\n AIS Technolabs PVT LTD is an ISO 27001:2013 AND ISO 9001 Certified company and a pioneer in web design and development company from India. We have also been voted as one of the Top 10 mobile app development companies in India. We are a leading IT Consulting and web solution provider for custom software, websites, games, custom web applications, enterprise mobility, mobile apps and cloud-based application design & development\nWe are amongst the fastest-growing web design and development companies in India, with 3900+ successful projects delivered across the United States, UK, UAE, Canada and other countries. Over 95% of the client retention rate demonstrates our level of services and client satisfaction.\nCompany Website:-https: //www.aistechnolabs.com/about-us\nJob Title: AI Automation Expert Job Summary\n\nWe are seeking a highly skilled AI Automation Expert to design, develop, and deploy intelligent automation solutions that improve operational efficiency and business outcomes. The ideal candidate will combine expertise in artificial intelligence, machine learning, and workflow automation to streamline processes and enable data-driven decision-making.\n\nKey Responsibilities:\n\nDesign and implement AI-driven automation solutions for business processes.\nDevelop, train, and deploy machine learning models for real-world applications.\nIntegrate AI tools with existing systems (CRM, ERP, APIs, databases).\nAutomate repetitive workflows using RPA and AI technologies.\nAnalyze large datasets to identify automation opportunities and insights.\nCollaborate with cross-functional teams (product, engineering, operations).\nMonitor and optimize AI models and automation pipelines for performance.\nEnsure compliance with data privacy and security standards.\nStay updated with the latest advancements in AI, automation, and tools.\nRequired Skills & Qualifications:\nBachelor’s/Master’s degree in Computer Science, Data Science, AI, or related field.\n1–3+ years of experience in AI, automation, or related roles.\nExperience with ML frameworks (TensorFlow, PyTorch, Scikit-learn).\nHands-on experience with automation tools (n8n, Zapier, Make).\nKnowledge of APIs, webhooks, and system integrations.\nFamiliarity with LLMs, prompt engineering, and AI tools (e.g., OpenAI, Claude).\nExperience with cloud platforms (AWS, Azure, or GCP).\nStrong problem-solving and analytical thinking.\nPreferred Qualifications:\nExperience with Generative AI and NLP applications.\nKnowledge of vector databases and embeddings.\nExperience building chatbots or AI assistants.\nFamiliarity with DevOps.\nCertifications in AI/ML or RPA tools"
+  }
+}
