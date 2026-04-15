@@ -17,7 +17,7 @@ from app.agents.agent_4_dispatcher import (
     send_email_with_attachment,
 )
 from app.database.relational import init_db, save_candidate_run
-from app.database.vector_store import store_document_in_vector_db
+# from app.database.vector_store import store_document_in_vector_db
 
 
 ALLOWED_ANSWER_LENGTHS = {"answer_small", "answer_medium", "answer_large"}
@@ -160,23 +160,23 @@ def run_full_workflow(
     jd_text = jd_out.get("raw_text_preview", "") or ""
     candidate_id = timestamp
 
-    try:
-        if resume_text:
-            store_document_in_vector_db(
-                doc_id=f"res_{timestamp}",
-                text=resume_text,
-                doc_type="resume",
-                candidate_id=candidate_id,
-            )
-        if jd_text:
-            store_document_in_vector_db(
-                doc_id=f"jd_{timestamp}",
-                text=jd_text,
-                doc_type="job_description",
-                candidate_id=candidate_id,
-            )
-    except Exception as e:
-        print(f"[Warning] Vector DB storage failed: {e}")
+    # try:
+    #     if resume_text:
+    #         store_document_in_vector_db(
+    #             doc_id=f"res_{timestamp}",
+    #             text=resume_text,
+    #             doc_type="resume",
+    #             candidate_id=candidate_id,
+    #         )
+    #     if jd_text:
+    #         store_document_in_vector_db(
+    #             doc_id=f"jd_{timestamp}",
+    #             text=jd_text,
+    #             doc_type="job_description",
+    #             candidate_id=candidate_id,
+    #         )
+    # except Exception as e:
+    #     print(f"[Warning] Vector DB storage failed: {e}")
 
     # ---------------------------------------------------------
     # 2. Agent 2: Company Researcher

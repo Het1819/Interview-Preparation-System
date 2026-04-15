@@ -4,10 +4,13 @@ from __future__ import annotations
 import os
 import re
 import json
+import time
 import argparse
 from typing import Any, Dict, Optional, List
 from dotenv import load_dotenv
 load_dotenv()
+from typing import List, Dict
+
 
 import requests
 from pydantic import BaseModel, Field
@@ -16,6 +19,8 @@ from langchain.agents import create_agent
 from langchain.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 
+# Tavily
+from tavily import TavilyClient
 # Exa
 from exa_py import Exa
 
@@ -118,6 +123,173 @@ def extract_json_object(text: str) -> Optional[Dict[str, Any]]:
     return None
 
 
+
+
+# =========================================================
+# Tavily Search Tool
+# =========================================================
+def _tavily_client() -> TavilyClient:
+    api_key = os.getenv("TAVILY_API_KEY")
+    if not api_key:
+        raise EnvironmentError("Missing TAVILY_API_KEY in environment variables.")
+    return TavilyClient(api_key=api_key)
+
+
+def _domain_from_url(url: str) -> str:
+    try:
+        m = re.search(r"https?://([^/]+)/?", url)
+        return m.group(1) if m else ""
+    except Exception:
+        return ""
+
+
+@tool
+def web_search_tavily(query: str) -> str:
+    """
+    Web search using Tavily.
+    Returns JSON string:
+    {
+      "query": "...",
+      "results": [
+        {"title": "...", "snippet": "...", "url": "...", "source": "..."},
+        ...
+      ]
+    }
+    """
+    query = (query or "").strip()
+    if not query:
+        return json.dumps({"error": "Empty query"}, ensure_ascii=False)
+
+    max_attempts = 5
+    initial_delay = 1
+    exp_base = 2
+    for attempt in range(max_attempts):
+        try:
+            tavily = _tavily_client()
+
+            # Tavily returns structured search results with `results[].content`.
+            # `topic="general"` is a safe default for broad web search.
+            resp = tavily.search(
+                query=query,
+                max_results=6,
+                search_depth="advanced",   # or "basic" if you want cheaper/faster
+                topic="general",
+                include_answer=False,
+                include_raw_content=False,
+                include_images=False,
+            )
+
+            results: List[Dict[str, str]] = []
+            for r in resp.get("results", []) or []:
+                url = r.get("url", "") or ""
+                title = r.get("title", "") or ""
+                snippet = (r.get("content", "") or "")[:600]
+
+                results.append(
+                    {
+                        "title": title,
+                        "snippet": snippet,
+                        "url": url,
+                        "source": _domain_from_url(url),
+                    }
+                )
+
+            if not results:
+                return json.dumps(
+                    {"error": "No results from Tavily.", "query": query},
+                    ensure_ascii=False
+                )
+
+            return json.dumps(
+                {"query": query, "results": results},
+                ensure_ascii=False
+            )
+
+        except Exception as e:
+            if attempt == max_attempts - 1:
+                return json.dumps({"error": str(e), "query": query}, ensure_ascii=False)
+            
+            delay = initial_delay * (exp_base ** attempt)
+            time.sleep(delay)
+
+@tool
+def fetch_url_tavily(url: str) -> str:
+    """
+    Optional: fetch raw page text for grounding.
+    First tries Tavily Extract, then falls back to requests if needed.
+
+    Returns JSON:
+    {"url":"...", "text":"..."} or {"url":"...", "error":"..."}
+    """
+    url = (url or "").strip()
+    if not url:
+        return json.dumps({"error": "Empty url"}, ensure_ascii=False)
+
+    # 1) Try Tavily Extract first
+    max_attempts = 5
+    initial_delay = 1
+    exp_base = 2
+    for attempt in range(max_attempts):
+        try:
+            tavily = _tavily_client()
+            resp = tavily.extract(url)
+
+            # Tavily extract response shape can vary slightly by SDK version/use,
+            # so we handle the common patterns defensively.
+            text = ""
+
+            if isinstance(resp, dict):
+                # Common pattern: {"results": [{"url": "...", "raw_content": "..."}]}
+                results = resp.get("results", [])
+                if results and isinstance(results, list):
+                    first = results[0] or {}
+                    text = (
+                        first.get("raw_content")
+                        or first.get("content")
+                        or first.get("text")
+                        or ""
+                    )
+                else:
+                    # Fallback if content is surfaced directly
+                    text = resp.get("raw_content") or resp.get("content") or resp.get("text") or ""
+
+            if text:
+                return json.dumps({"url": url, "text": text[:12000]}, ensure_ascii=False)
+
+        except Exception:
+            pass
+
+        # 2) Fallback to plain requests
+        try:
+            r = requests.get(
+                url,
+                timeout=30,
+                headers={
+                    "User-Agent": (
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                        "AppleWebKit/537.36 (KHTML, like Gecko) "
+                        "Chrome/120.0 Safari/537.36"
+                    )
+                },
+            )
+            r.raise_for_status()
+            html = r.text
+
+            # basic HTML -> text
+            text = re.sub(r"(?is)<script.*?>.*?</script>", " ", html)
+            text = re.sub(r"(?is)<style.*?>.*?</style>", " ", text)
+            text = re.sub(r"(?s)<.*?>", " ", text)
+            text = re.sub(r"\s+", " ", text).strip()
+
+            return json.dumps({"url": url, "text": text[:12000]}, ensure_ascii=False)
+        except Exception as e:
+            if attempt == max_attempts - 1:
+                return json.dumps({"url": url, "error": str(e)}, ensure_ascii=False)
+
+            delay = initial_delay * (exp_base ** attempt)
+            import time
+            time.sleep(delay)
+
 # =========================================================
 # Exa Search Tool
 # =========================================================
@@ -137,7 +309,7 @@ def _domain_from_url(url: str) -> str:
 
 
 @tool
-def web_search(query: str) -> str:
+def web_search_exa(query: str) -> str:
     """
     Web search using Exa.
     Returns JSON string:
@@ -152,53 +324,60 @@ def web_search(query: str) -> str:
     query = (query or "").strip()
     if not query:
         return json.dumps({"error": "Empty query"}, ensure_ascii=False)
+    max_attempts = 5
+    initial_delay = 1
+    exp_base = 2
 
-    try:
-        exa = _exa_client()
+    for attempt in range(max_attempts):
+        try:
+            exa = _exa_client()
 
-        # Exa can return text/highlights. We'll keep it lightweight.
-        resp = exa.search_and_contents(
-            query=query,
-            num_results=6,
-            text=True,
-            highlights=True,
-            # You can optionally bias freshness:
-            # start_published_date="2024-01-01",
-        )
-
-        results: List[Dict[str, str]] = []
-        for r in getattr(resp, "results", []) or []:
-            url = getattr(r, "url", "") or ""
-            title = getattr(r, "title", "") or ""
-
-            snippet = ""
-            highlights = getattr(r, "highlights", None)
-            if highlights:
-                snippet = " ".join(highlights)[:600]
-            else:
-                txt = getattr(r, "text", "") or ""
-                snippet = txt[:600]
-
-            results.append(
-                {
-                    "title": title,
-                    "snippet": snippet,
-                    "url": url,
-                    "source": _domain_from_url(url),
-                }
+            # Exa can return text/highlights. We'll keep it lightweight.
+            resp = exa.search_and_contents(
+                query=query,
+                num_results=6,
+                text=True,
+                highlights=True,
+                # You can optionally bias freshness:
+                # start_published_date="2024-01-01",
             )
 
-        if not results:
-            return json.dumps({"error": "No results from Exa.", "query": query}, ensure_ascii=False)
+            results: List[Dict[str, str]] = []
+            for r in getattr(resp, "results", []) or []:
+                url = getattr(r, "url", "") or ""
+                title = getattr(r, "title", "") or ""
 
-        return json.dumps({"query": query, "results": results}, ensure_ascii=False)
+                snippet = ""
+                highlights = getattr(r, "highlights", None)
+                if highlights:
+                    snippet = " ".join(highlights)[:600]
+                else:
+                    txt = getattr(r, "text", "") or ""
+                    snippet = txt[:600]
 
-    except Exception as e:
-        return json.dumps({"error": str(e), "query": query}, ensure_ascii=False)
+                results.append(
+                    {
+                        "title": title,
+                        "snippet": snippet,
+                        "url": url,
+                        "source": _domain_from_url(url),
+                    }
+                )
 
+            if not results:
+                return json.dumps({"error": "No results from Exa.", "query": query}, ensure_ascii=False)
+
+            return json.dumps({"query": query, "results": results}, ensure_ascii=False)
+
+        except Exception as e:
+            # return json.dumps({"error": str(e), "query": query}, ensure_ascii=False)
+            if attempt == max_attempts - 1:
+                return json.dumps({"error": str(e), "query": query}, ensure_ascii=False)
+            delay = initial_delay * (exp_base ** attempt)
+            time.sleep(delay)
 
 @tool
-def fetch_url(url: str) -> str:
+def fetch_url_exa(url: str) -> str:
     """
     Optional: fetch raw page text for grounding.
     Exa already returns text, but this can help for official pages that Exa summaries miss.
@@ -283,9 +462,11 @@ def build_agent2(model_name: str = "gemini-2.5-flash-lite", temperature: float =
         model=model_name,
         temperature=temperature,
         google_api_key=os.getenv("GOOGLE_API_KEY"),
+        timeout=120,
+        max_retries=2
     )
 
-    tools = [web_search, fetch_url]
+    tools = [web_search_tavily, fetch_url_tavily,web_search_exa,fetch_url_exa]
 
     system_prompt = """
 You are Agent 2: Company Researcher for interview preparation.
@@ -414,3 +595,4 @@ if __name__ == "__main__":
 
 # run the Code
 # python -m app.agents.agent_2_researcher --agent1_json "app/output/agent1.json" --company "Stripe" --role "Data Analyst"
+# python -m app.agents.agent_2_researcher --agent1_json "app/output/20260408_142740/agent1_combined_out_20260408_142740.json" --company "Micro1" --role "AI/ML Engineer"

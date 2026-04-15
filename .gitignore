@@ -208,3 +208,6 @@ __marimo__/
 
 # Output
 app/database_output
+app/output
+app/uploads
+app/documents

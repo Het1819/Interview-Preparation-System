@@ -62,7 +62,19 @@ def gemini_multimodal_extract_text(part: genai_types.Part, model: str = "gemini-
     if not api_key:
         raise EnvironmentError("Missing GOOGLE_API_KEY in environment variables.")
 
-    client = genai.Client(api_key=api_key)
+    retry_config = genai_types.HttpRetryOptions(
+        attempts=5,
+        exp_base=7,
+        initial_delay=1,
+        http_status_codes=[429, 500, 503, 504],
+    )
+
+    client = genai.Client(
+                api_key=api_key,
+                http_options=genai_types.HttpOptions(
+                    retry_options=retry_config
+                )
+            )
 
     prompt = (
         "Extract all readable text from this document. "
@@ -182,6 +194,8 @@ def build_agent1(
         model=model_name,
         temperature=temperature,
         google_api_key=os.getenv("GOOGLE_API_KEY"),
+        timeout=120,
+        max_retries=2
     )
 
     tools = [load_file_with_smartloader]

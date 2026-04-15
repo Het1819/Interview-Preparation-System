@@ -23,5 +23,6 @@ fastapi
 uvicorn[standard]
 python-multipart
 python-dotenv
+tavily-python
 
 # -e .
