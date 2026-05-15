@@ -17,10 +17,10 @@ import {
 import type { WorkflowResponse } from '../types/api';
 import { API_BASE_URL } from '../lib/api';
 import { toAbsoluteUrl } from '../lib/utils';
+import { DownloadViewer } from './download/DownloadViewer';
 
 type ResultPanelProps = {
   result: WorkflowResponse | null;
-  runDetails: Record<string, unknown> | null;
   isLoading: boolean;
   error: string | null;
 };
@@ -47,15 +47,19 @@ function LoadingMessages() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
     const interval = setInterval(() => {
       setVisible(false);
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setIndex((i) => (i + 1) % loadingMessages.length);
         setVisible(true);
       }, 400);
     }, 2800);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   const { Icon, text } = loadingMessages[index];
@@ -81,12 +85,13 @@ export function ResultPanel({ result, isLoading, error }: ResultPanelProps) {
           <h3>Workflow output</h3>
         </div>
         <span className={`result-state ${isLoading ? 'running' : result?.success ? 'success' : result ? 'error' : 'idle'}`}>
+          <span className="status-dot" />
           {isLoading ? 'Generating' : result?.success ? 'Success' : result ? 'Review' : 'Waiting'}
         </span>
       </div>
 
       {isLoading && (
-        <div className="loader-block">
+        <div className="loader-block" aria-live="polite" aria-label="Loading interview pack">
           <div className="spinner" />
           <div className="loader-steps">
             <strong>Preparing your interview pack</strong>
@@ -96,7 +101,7 @@ export function ResultPanel({ result, isLoading, error }: ResultPanelProps) {
       )}
 
       {error && (
-        <div className="message-card error-card">
+        <div className="message-card error-card" role="alert" aria-live="assertive">
           <strong>Request failed</strong>
           <pre>{error}</pre>
         </div>
@@ -133,19 +138,13 @@ export function ResultPanel({ result, isLoading, error }: ResultPanelProps) {
           <div className="message-card success-card">
             <strong>{result.message}</strong>
             <p>Recipient: {result.recipient_email || 'No email requested'}</p>
+            <div className="run-id-note">
+              <span className="run-id-note-icon">ℹ️</span>
+              <p><strong>Note:</strong> Please keep this <strong>Run ID</strong> safe. You can use it to download your interview pack again later without re-running the workflow.</p>
+            </div>
           </div>
 
-          <div className="button-row stretch-row">
-            {pdfUrl ? (
-              <a className="button primary full-width" href={pdfUrl} target="_blank" rel="noreferrer">
-                Download PDF
-              </a>
-            ) : (
-              <button type="button" className="button primary full-width" disabled>
-                PDF not available yet
-              </button>
-            )}
-          </div>
+          <DownloadViewer runId={result.run_id} />
         </div>
       )}
     </aside>

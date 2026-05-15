@@ -32,7 +32,12 @@ export function FileInputCard({ label, hint, accept, file, onChange }: FileInput
         </button>
       </div>
 
-      <button type="button" className={`dropzone ${file ? 'is-selected' : ''}`} onClick={openPicker}>
+      <button
+        type="button"
+        className={`dropzone ${file ? 'is-selected' : ''}`}
+        onClick={openPicker}
+        aria-label={file ? `${file.name} selected, click to replace` : `Choose a file for ${label}`}
+      >
         <span className="dropzone-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>

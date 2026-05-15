@@ -8,7 +8,7 @@ type TagInputProps = {
   onRemove: (value: string) => void;
 };
 
-const presets = ['Recruiter Screen', 'Technical Round 1', 'Hiring Manager', 'Behavioral'];
+const presets = ['Recruiter Screen Round', 'Technical Round', 'Coding Round', 'System Design Round', 'Hiring Manager Round', 'Behavioral Round', 'Final Round'];
 
 export function TagInput({ value, customValue, onCustomValueChange, onAdd, onRemove }: TagInputProps) {
   const remainingPresets = useMemo(() => presets.filter((item) => !value.includes(item)), [value]);

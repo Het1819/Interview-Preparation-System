@@ -4,13 +4,67 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
     <meta
       name="description"
-      content="Whitespace-first frontend for the Interview Preparation System"
+      content="Generate targeted interview packs from your resume and job description. Powered by Recruit Riders Technologies."
     />
     <title>Recruit Riders | Interview Preparation System</title>
+
+    <!-- Content Security Policy -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' http://127.0.0.1:8000 https:; font-src 'self' data:;"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Recruit Riders | Interview Preparation System" />
+    <meta property="og:description" content="Generate targeted interview packs from your resume and job description." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/hero-illustration.svg" />
+    <meta property="og:url" content="https://recruitriders.com" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Recruit Riders | Interview Preparation System" />
+    <meta name="twitter:description" content="Generate targeted interview packs from your resume and job description." />
+    <meta name="twitter:image" content="/hero-illustration.svg" />
+
+    <link rel="preload" as="image" href="/assets/brand/rrt-logo.svg" />
+    <link rel="preload" as="image" href="/hero-illustration.svg" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Recruit Riders Technologies",
+        "url": "https://recruitriders.com",
+        "logo": "https://recruitriders.com/assets/brand/rrt-logo.svg",
+        "sameAs": [
+          "https://www.recruitriders.com/"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Interview Preparation System",
+        "operatingSystem": "All",
+        "applicationCategory": "EducationalApplication",
+        "description": "Generate targeted interview preparation packs from your resume and job description.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
   </head>
   <body>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

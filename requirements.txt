@@ -24,5 +24,6 @@ uvicorn[standard]
 python-multipart
 python-dotenv
 tavily-python
+psycopg2-binary
 
 # -e .
